@@ -15,6 +15,12 @@ session_start();
     <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 <body>
-  <!-- Future content goes here -->
+    <!-- Upper Navigation -->
+    <!-- Main Navbar -->
+    <!-- Landing Section -->
+    <!-- Category Section -->
+    <!-- Advertise Section -->
+    <!-- Products Section -->
 </body>
+
 </html>
