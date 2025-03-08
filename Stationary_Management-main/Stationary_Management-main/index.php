@@ -15,12 +15,15 @@ session_start();
     <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 <body>
-    <!-- Upper Navigation -->
-    <!-- Main Navbar -->
-    <!-- Landing Section -->
-    <!-- Category Section -->
-    <!-- Advertise Section -->
-    <!-- Products Section -->
+     <!-- Upper Navigation -->
+     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
+        <span>
+          Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! 
+          <a href="#">Shop Now</a>
+        </span>
+    </div>
+    <!-- Main Navbar placeholder -->
+    <!-- Landing Section placeholder -->
 </body>
 
 </html>
