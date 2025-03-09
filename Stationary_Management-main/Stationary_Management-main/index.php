@@ -120,7 +120,7 @@ session_start();
         </div>
     </div>
 </div>
-<!-- End Landing Section -->
+<!-- End Landing_Section -->
 </body>
 
 </html>
