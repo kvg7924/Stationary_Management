@@ -9,7 +9,7 @@
     scroll-behavior: smooth;
   }
   body {
-    /* Base styles */
+     font-family: "regular","sans-serif"; 
   }
   a {
     text-decoration: none;
