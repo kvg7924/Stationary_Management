@@ -97,8 +97,30 @@ session_start();
     </div>
 </nav>
 <!-- End Navbar -->
-
-    <!-- Landing Section placeholder -->
+<!-- Start Landing Section -->
+<div class="landing">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-md-0 tabs-categ">
+                <ul class="p-md-0 d-flex flex-column gap-3 pt-md-3">
+                    <li>Stationary ></li>
+                    <li>Scientific calculator ></li>
+                    <li>Pencils ></li>
+                    <li>Pens ></li>
+                    <li>Books ></li>
+                    <li>Sports & Outdoor ></li>
+                    <li>Notebooks ></li>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-md-9 d-none d-sm-none d-md-block pt-md-4">
+                <div class="cover">
+                    <!-- Cover image/slider placeholder -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Landing_Section -->
 </body>
 
 </html>
