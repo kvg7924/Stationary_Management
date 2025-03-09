@@ -61,6 +61,38 @@ session_start();
                         }
                     ?>
             </ul>
+            <form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+</form>
+<ul class="navbar-nav mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a class="nav-link" href="./cart.php">
+            <!-- Cart Icon SVG -->
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG paths here -->
+            </svg>
+            <sup>
+                <?php cart_item(); ?>
+            </sup>
+            <span class="d-none">
+                Total Price is: <?php total_cart_price(); ?>
+            </span>
+        </a>
+    </li>
+    <?php
+    if (!isset($_SESSION['username'])) {
+        echo "<li class='nav-item'>
+        <a class='nav-link' href='./users_area/user_login.php'>Login</a>
+        </li>";
+    } else {
+        echo "<li class='nav-item'>
+        <a class='nav-link' href='./users_area/logout.php'>Logout</a>
+        </li>";
+    }
+    ?>
+</ul>
+
         </div>
     </div>
 </nav>
