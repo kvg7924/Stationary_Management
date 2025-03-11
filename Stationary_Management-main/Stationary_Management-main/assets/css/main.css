@@ -19,4 +19,25 @@
   ul {
     list-style: none;
   }
+  .upper-nav span {
+    color: #ffffff; /* Upper nav text */
+    font-size: 14px;
+  }
+  .upper-nav span a {
+    text-decoration: underline !important;
+  }
+  .bg-light {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #7D8184;
+  }
+  .navbar .d-flex .form-control {
+    background-color: #F5F5F5;
+    border: none;
+  }
+  .navbar .d-flex .btn-outline-primary {
+    background-color: #DB4444;
+    color: #ffffff;
+    border: none;
+  }
+  
   
