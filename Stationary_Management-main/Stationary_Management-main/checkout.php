@@ -14,8 +14,7 @@ include('../includes/connect.php');
     <link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 
-<body>  
-
+<body>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
@@ -102,6 +101,26 @@ include('../includes/connect.php');
         </div>
     </nav>
     <!-- End NavBar -->
+
+    <!-- Start Landing Section -->
+    <div class="landing">
+        <div class="container">
+            <div class="row m-0">
+                <?php
+                    if(!isset($_SESSION['username'])){
+                        include('user_login.php');
+                    }else{
+                        include('payment.php');
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+    <!-- End Landing Section -->
+
+
+
+
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
 </body>
