@@ -201,6 +201,13 @@ session_start();
             getIPAddress();
             ?>
         </div>
+        <div class="view d-flex justify-content-center align-items-center">
+            <button onclick="location.href='./products.php'">View All Products</button>
+        </div>
+    </div>
+</div>
+<!-- End Products Section -->
+<script src="./assets/js/bootstrap.bundle.js"></script>
 
 
 
