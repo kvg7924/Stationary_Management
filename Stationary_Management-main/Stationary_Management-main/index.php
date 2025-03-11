@@ -175,6 +175,17 @@ session_start();
         <span>HeadPhones</span>
     </div>
 </div>
+<!-- Start Advertise Section -->
+<div class="adver">
+    <div class="container">
+        <div class="cover">
+            <!-- Advertise image/background placeholder -->
+            <button onclick="location.href='#'">Buy Now!</button>
+        </div>
+    </div>
+</div>
+<!-- End Advertise Section -->
+
 
 
 </body>
