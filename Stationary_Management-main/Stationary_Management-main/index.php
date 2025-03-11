@@ -185,6 +185,16 @@ session_start();
     </div>
 </div>
 <!-- End Advertise Section -->
+<!-- Start Products Section -->
+<div class="products">
+    <div class="container">
+        <div class="categ-header">
+            <div class="sub-title">
+                <span class="shape"></span>
+                <span class="title">Our Products</span>
+            </div>
+            <h2>Explore Our Products</h2>
+        </div>
 
 
 
