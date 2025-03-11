@@ -121,6 +121,17 @@ session_start();
     </div>
 </div>
 <!-- End Landing_Section -->
+ <!-- Start Category Section -->
+<div class="category">
+    <div class="container">
+        <div class="categ-header">
+            <div class="sub-title">
+                <span class="shape"></span>
+                <span class="title">Categories</span>
+            </div>
+            <h2>Browse By Category</h2>
+        </div>
+
 </body>
 
 </html>
