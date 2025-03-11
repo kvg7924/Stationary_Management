@@ -106,3 +106,34 @@ if(isset($_POST['insert_product'])){
                             ?>
                         </select>
                     </div>
+                     <!-- Image one -->
+                     <div class="form-outline mb-4">
+                        <label for="product_image_one" class="form-label">Product Image One</label>
+                        <input type="file" name="product_image_one" id="product_image_one" class="form-control" required>
+                    </div>
+                    <!-- Image two -->
+                    <div class="form-outline mb-4">
+                        <label for="product_image_two" class="form-label">Product Image Two</label>
+                        <input type="file" name="product_image_two" id="product_image_two" class="form-control" required>
+                    </div>
+                    <!-- Image three -->
+                    <div class="form-outline mb-4">
+                        <label for="product_image_three" class="form-label">Product Image Three</label>
+                        <input type="file" name="product_image_three" id="product_image_three" class="form-control" required>
+                    </div>
+                    <!-- Price -->
+                    <div class="form-outline mb-4">
+                        <label for="product_price" class="form-label">Product Price</label>
+                        <input type="number" placeholder="Enter Product Price" name="product_price" id="product_price" class="form-control" autocomplete="off" required>
+                    </div>
+                    <!--  -->
+                    <div class="form-outline mb-4">
+                        <input type="submit" value="Insert Product" name="insert_product" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
