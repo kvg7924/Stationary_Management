@@ -135,5 +135,4 @@ if(isset($_POST['insert_product'])){
         </form>
     </div>
 </body>
-
 </html>
