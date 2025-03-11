@@ -34,3 +34,75 @@ if(isset($_POST['insert_product'])){
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Products - Admin Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body>
+    <div class="container py-4 px-2">
+        <div class="categ-header text-center mb-4">
+            <!-- <div class="sub-title">
+                    <span class="shape"></span>
+                    <span class="title">Admin Dashboard</span>
+                </div> -->
+            <h2>Insert Products</h2>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <!-- title -->
+                    <div class="form-outline mb-4">
+                        <label for="product_title" class="form-label">Product Title</label>
+                        <input type="text" placeholder="Enter Product Title" name="product_title" id="product_title" class="form-control" autocomplete="off" required>
+                    </div>
+                    <!-- description -->
+                    <div class="form-outline mb-4">
+                        <label for="product_description" class="form-label">Product Description</label>
+                        <input type="text" placeholder="Enter Product Description" name="product_description" id="product_description" class="form-control" autocomplete="off" required>
+                    </div>
+                    <!-- keywords -->
+                    <div class="form-outline mb-4">
+                        <label for="product_keywords" class="form-label">Product Keywords</label>
+                        <input type="text" placeholder="Enter Product Keywords" name="product_keywords" id="product_keywords" class="form-control" autocomplete="off" required>
+                    </div>
+                    <!-- categories -->
+                    <div class="form-outline mb-4">
+                        <select class="form-select" name="product_category" id="product_category">
+                            <option selected disabled>Select a Cateogry</option>
+                            <?php
+                            $select_query = 'SELECT * FROM `categories`';
+                            $select_result = mysqli_query($con, $select_query);
+                            while ($row = mysqli_fetch_assoc($select_result)) {
+                                $category_title = $row['category_title'];
+                                $category_id = $row['category_id'];
+                                echo "
+                                        <option value='$category_id'>$category_title</option>
+                                        ";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <!-- brands -->
+                    <div class="form-outline mb-4">
+                        <select class="form-select" name="product_brand" id="product_brand">
+                            <option selected disabled>Select a Brand</option>
+                            <?php
+                            $select_query = 'SELECT * FROM `brands`';
+                            $select_result = mysqli_query($con, $select_query);
+                            while ($row = mysqli_fetch_assoc($select_result)) {
+                                $brand_title = $row['brand_title'];
+                                $brand_id = $row['brand_id'];
+                                echo "
+                                        <option value='$brand_id'>$brand_title</option>
+                                        ";
+                            }
+                            ?>
+                        </select>
+                    </div>
