@@ -2,7 +2,15 @@
 include("../includes/connect.php");
 include("../functions/common_functions.php");
 session_start();
+if (isset($_GET['order_id'])) {
+    $order_id = $_GET['order_id'];
+    $select_order_query = "SELECT * FROM `user_orders` WHERE order_id = '$order_id'";
+    $select_order_result = mysqli_query($con,$select_order_query);
+    $row_fetch = mysqli_fetch_array($select_order_result);
+    $invoice_number = $row_fetch['invoice_number'];
+    $amount_due = $row_fetch['amount_due'];
 
+}
 if(isset($_POST['confirm_payment'])){
     //insert user payment
     $invoice_number = $_POST['invoice_number'];
@@ -31,7 +39,11 @@ if(isset($_POST['confirm_payment'])){
 </head>
 
 <body>
-
+    <!-- upper-nav -->
+    <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
+        <span>We are glad to help you | we wish buy again from our store</span>
+    </div>
+    <!-- upper-nav -->
     <div class="container my-5">
         <h1 class="text-center">Confirm Payment</h1>
         <div class="row justify-content-center">
