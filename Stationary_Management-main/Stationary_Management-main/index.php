@@ -121,6 +121,96 @@ session_start();
     </div>
 </div>
 <!-- End Landing_Section -->
+ <!-- Start Category Section -->
+<div class="category">
+    <div class="container">
+        <div class="categ-header">
+            <div class="sub-title">
+                <span class="shape"></span>
+                <span class="title">Categories</span>
+            </div>
+            <h2>Browse By Category</h2>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <span>
+                    <!-- SVG for Phones -->
+                </span>
+                <span>Phones</span>
+            </div>
+            <div class="card">
+                <span>
+                    <!-- SVG for Computers -->
+                </span>
+                <span>Computers</span>
+            </div>
+            <div class="card">
+                <span>
+                    <!-- SVG for SmartWatch -->
+                </span>
+                <span>SmartWatch</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Category Section -->
+<div class="cards">
+    <!-- Existing cards -->
+    <div class="card">
+        <span>
+            <!-- SVG for Camera -->
+        </span>
+        <span>Camera</span>
+    </div>
+    <div class="card">
+        <span>
+            <!-- SVG for Gaming -->
+        </span>
+        <span>Gaming</span>
+    </div>
+    <div class="card">
+        <span>
+            <!-- SVG for HeadPhones -->
+        </span>
+        <span>HeadPhones</span>
+    </div>
+</div>
+<!-- Start Advertise Section -->
+<div class="adver">
+    <div class="container">
+        <div class="cover">
+            <!-- Advertise image/background placeholder -->
+            <button onclick="location.href='#'">Buy Now!</button>
+        </div>
+    </div>
+</div>
+<!-- End Advertise Section -->
+<!-- Start Products Section -->
+<div class="products">
+    <div class="container">
+        <div class="categ-header">
+            <div class="sub-title">
+                <span class="shape"></span>
+                <span class="title">Our Products</span>
+            </div>
+            <h2>Explore Our Products</h2>
+        </div>
+        <div class="row mb-3">
+            <?php
+            getProduct(3);
+            getIPAddress();
+            ?>
+        </div>
+        <div class="view d-flex justify-content-center align-items-center">
+            <button onclick="location.href='./products.php'">View All Products</button>
+        </div>
+    </div>
+</div>
+<!-- End Products Section -->
+<script src="./assets/js/bootstrap.bundle.js"></script>
+
+
+
 </body>
 
 </html>

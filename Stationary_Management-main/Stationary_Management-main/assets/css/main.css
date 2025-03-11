@@ -19,4 +19,58 @@
   ul {
     list-style: none;
   }
+  .upper-nav span {
+    color: #ffffff; /* Upper nav text */
+    font-size: 14px;
+  }
+  .upper-nav span a {
+    text-decoration: underline !important;
+  }
+  .bg-light {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #7D8184;
+  }
+  .navbar .d-flex .form-control {
+    background-color: #F5F5F5;
+    border: none;
+  }
+  .navbar .d-flex .btn-outline-primary {
+    background-color: #DB4444;
+    color: #ffffff;
+    border: none;
+  }
+  .one-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Card spacing */
+  }
+  .one-card .photo {
+    background-color: #eaeaea;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 320px;
+    border-radius: 4px;
+  }
+  .one-card .photo img {
+    width: 50%;
+  }
+  .one-card .photo button {
+    position: absolute;
+    width: 50%;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 6px;
+    bottom: -40px;
+    transition: all 0.2s ease-in-out;
+  }
+  .one-card .photo:hover button {
+    bottom: 0;
+  }
+  
+  
   
