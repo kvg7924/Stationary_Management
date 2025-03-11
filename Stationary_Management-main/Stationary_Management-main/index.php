@@ -131,6 +131,30 @@ session_start();
             </div>
             <h2>Browse By Category</h2>
         </div>
+        <div class="cards">
+            <div class="card">
+                <span>
+                    <!-- SVG for Phones -->
+                </span>
+                <span>Phones</span>
+            </div>
+            <div class="card">
+                <span>
+                    <!-- SVG for Computers -->
+                </span>
+                <span>Computers</span>
+            </div>
+            <div class="card">
+                <span>
+                    <!-- SVG for SmartWatch -->
+                </span>
+                <span>SmartWatch</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Category Section -->
+
 
 </body>
 
