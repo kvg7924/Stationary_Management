@@ -154,6 +154,27 @@ session_start();
     </div>
 </div>
 <!-- End Category Section -->
+<div class="cards">
+    <!-- Existing cards -->
+    <div class="card">
+        <span>
+            <!-- SVG for Camera -->
+        </span>
+        <span>Camera</span>
+    </div>
+    <div class="card">
+        <span>
+            <!-- SVG for Gaming -->
+        </span>
+        <span>Gaming</span>
+    </div>
+    <div class="card">
+        <span>
+            <!-- SVG for HeadPhones -->
+        </span>
+        <span>HeadPhones</span>
+    </div>
+</div>
 
 
 </body>
