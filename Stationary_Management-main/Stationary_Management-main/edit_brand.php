@@ -8,3 +8,20 @@
         $brand_id = $row_fetch_data['brand_id'];
         $brand_title = $row_fetch_data['brand_title'];
     }
+     // edit brand
+     if(isset($_POST['update_brand'])){
+        $brand_title = $_POST['brand_title'];
+        // check empty fields 
+        if(empty($brand_title)){
+            echo "<script>window.alert('Please fill the field');</script>";
+        }else{
+            // update query 
+            $update_brand_query = "UPDATE `brands` SET brand_title='$brand_title' WHERE brand_id = $edit_id";
+            $update_brand_result = mysqli_query($con,$update_brand_query);
+            if($update_brand_result){
+                echo "<script>window.alert('Brand updated successfully');</script>";
+                echo "<script>window.open('./index.php?view_brands','_self');</script>";
+            }
+        }
+    }
+    ?>
