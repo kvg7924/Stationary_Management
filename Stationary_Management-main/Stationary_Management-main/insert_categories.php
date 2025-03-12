@@ -24,7 +24,7 @@ if (isset($_POST['insert_categ_title'])) {
                 <h2>Insert Categories</h2>
             </div>
         </div>
-<form action="" method="POST" class="mb-2">
+        <form action="" method="POST" class="mb-2">
     <div class="input-group w-90 mb-3">
         <span class="input-group-text secondry-1" id="basic-addon1">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill="#ffffff" viewBox="0 0 384 512">
