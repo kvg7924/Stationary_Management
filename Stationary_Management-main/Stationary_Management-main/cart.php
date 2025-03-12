@@ -65,13 +65,13 @@ session_start();
                             </svg>
                             <sup>
                                 <?php
-                                cart_item();
+                                get_cart_item_count();
                                 ?>
                             </sup>
                             <span class="d-none">
                                 Total Price is: 
                                 <?php
-                                total_cart_price();
+                                calculate_total_cart_price();
                                 ?>
                             </span>
                         </a>
@@ -105,12 +105,12 @@ session_start();
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <table class="table table-bordered table-hover table-striped table-group-divider text-center">
                         <?php
-                        $getIpAddress = getIPAddress();
+                        $user_ip = getIPAddress();
                         $total_price = 0;
                         $cart_query = "SELECT * FROM `card_details` WHERE ip_address='$getIpAddress'";
                         $cart_result = mysqli_query($con, $cart_query);
-                        $result_count = mysqli_num_rows($cart_result);
-                        if ($result_count > 0) {
+                        $cart_item_count = mysqli_num_rows($cart_result);
+                        if ($cart_item_count > 0) {
                             echo "<thead><tr><th>Product Title</th><th>Product Image</th><th>Quantity</th><th>Total Price</th><th>Remove</th><th colspan='2'>Operations</th></tr></thead><tbody>";
                             while ($row = mysqli_fetch_array($cart_result)) {
                                 $product_id = $row['product_id'];
@@ -135,13 +135,13 @@ session_start();
                                 }
                             }
                         } else {
-                            echo "<h2 class='text-center text-danger'>Cart is empty</h2>";
+                            echo "<h2 class='text-center text-danger'>Your cart is empty</h2>";
                         }
                         ?>
                         </tbody>
                     </table>
                     <?php
-                    if ($result_count > 0) {
+                    if ($cart_item_count > 0) {
                         echo "
                         <div class='d-flex align-items-center gap-4 flex-wrap'>
                             <h4>Sub-Total: <strong class='text-2'>$total_price</strong></h4>
