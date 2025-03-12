@@ -71,6 +71,26 @@
   .one-card .photo:hover button {
     bottom: 0;
   }
+  @media (max-width:767px) {
+    .one-card .content {
+      text-align: center;
+    }
+    .one-card .content .desc {
+      justify-content: center;
+    }
+  }
+  .container .categ-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .container .categ-header .sub-title {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    align-items: center;
+  }
   
   
   
