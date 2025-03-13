@@ -143,5 +143,14 @@ session_start();
     </div>
 
     <script src="./assets/js/bootstrap.bundle.js"></script>
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const searchValue = document.getElementById('search-box').value;
+            fetch(`./functions/live_search.php?search_data=${searchValue}`)
+                .then(response => response.text())
+                .then(data => document.getElementById('product-container').innerHTML = data);
+        });
+    </script>
 </body>
 </html>
