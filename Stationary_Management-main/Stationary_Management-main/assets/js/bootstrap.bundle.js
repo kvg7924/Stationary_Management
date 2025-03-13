@@ -4687,3 +4687,4 @@
     toggle(relatedTarget) {
       return this._isShown ? this.hide() : this.show(relatedTarget);
     }
+  }}))
