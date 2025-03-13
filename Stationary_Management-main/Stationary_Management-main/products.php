@@ -65,13 +65,13 @@ session_start();
                             </svg>
                             <sup>
                                 <?php
-                                cart_item();
+                                echo get_cart_item_count();
                                 ?>
                             </sup>
                             <span class="d-none">
                                 Total Price is: 
                                 <?php
-                                total_cart_price();
+                                echo calculate_total_cart_price();
                                 ?>
                             </span>
                         </a>
