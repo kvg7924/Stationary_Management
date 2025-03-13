@@ -9,7 +9,7 @@
         $brand_title = $row_fetch_data['brand_title'];
     }
      // edit brand
-     if(isset($_POST['update_brand'])){
+    if(isset($_POST['update_brand'])){
         $brand_title = $_POST['brand_title'];
         // check empty fields 
         if(empty($brand_title)){
@@ -25,3 +25,19 @@
         }
     }
     ?>
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Edit Brand</h1>
+            <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-3 mb-3">
+                <div class="form-outline">
+                    <label for="brand_title" class="form-label">Product Title</label>
+                    <input type="text" name="brand_title" id="brand_title" class="form-control" required value="<?php echo $brand_title;?>">
+                </div>
+                <div class="form-outline text-center">
+                    <input type="submit" value="Update Brand" class="btn btn-primary" name="update_brand">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
