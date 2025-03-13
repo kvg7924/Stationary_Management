@@ -3207,6 +3207,1152 @@
     fn: hide
   };
 
+  function distanceAndSkiddingToXY(placement, rects, offset) {
+    var basePlacement = getBasePlacement(placement);
+    var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
+
+    var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
+      placement: placement
+    })) : offset,
+        skidding = _ref[0],
+        distance = _ref[1];
+
+    skidding = skidding || 0;
+    distance = (distance || 0) * invertDistance;
+    return [left, right].indexOf(basePlacement) >= 0 ? {
+      x: distance,
+      y: skidding
+    } : {
+      x: skidding,
+      y: distance
+    };
+  }
+
+  function offset(_ref2) {
+    var state = _ref2.state,
+        options = _ref2.options,
+        name = _ref2.name;
+    var _options$offset = options.offset,
+        offset = _options$offset === void 0 ? [0, 0] : _options$offset;
+    var data = placements.reduce(function (acc, placement) {
+      acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
+      return acc;
+    }, {});
+    var _data$state$placement = data[state.placement],
+        x = _data$state$placement.x,
+        y = _data$state$placement.y;
+
+    if (state.modifiersData.popperOffsets != null) {
+      state.modifiersData.popperOffsets.x += x;
+      state.modifiersData.popperOffsets.y += y;
+    }
+
+    state.modifiersData[name] = data;
+  } // eslint-disable-next-line import/no-unused-modules
+
+
+  const offset$1 = {
+    name: 'offset',
+    enabled: true,
+    phase: 'main',
+    requires: ['popperOffsets'],
+    fn: offset
+  };
+
+  function popperOffsets(_ref) {
+    var state = _ref.state,
+        name = _ref.name;
+    // Offsets are the actual position the popper needs to have to be
+    // properly positioned near its reference element
+    // This is the most basic placement, and will be adjusted by
+    // the modifiers in the next step
+    state.modifiersData[name] = computeOffsets({
+      reference: state.rects.reference,
+      element: state.rects.popper,
+      strategy: 'absolute',
+      placement: state.placement
+    });
+  } // eslint-disable-next-line import/no-unused-modules
+
+
+  const popperOffsets$1 = {
+    name: 'popperOffsets',
+    enabled: true,
+    phase: 'read',
+    fn: popperOffsets,
+    data: {}
+  };
+
+  function getAltAxis(axis) {
+    return axis === 'x' ? 'y' : 'x';
+  }
+
+  function preventOverflow(_ref) {
+    var state = _ref.state,
+        options = _ref.options,
+        name = _ref.name;
+    var _options$mainAxis = options.mainAxis,
+        checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+        _options$altAxis = options.altAxis,
+        checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
+        boundary = options.boundary,
+        rootBoundary = options.rootBoundary,
+        altBoundary = options.altBoundary,
+        padding = options.padding,
+        _options$tether = options.tether,
+        tether = _options$tether === void 0 ? true : _options$tether,
+        _options$tetherOffset = options.tetherOffset,
+        tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
+    var overflow = detectOverflow(state, {
+      boundary: boundary,
+      rootBoundary: rootBoundary,
+      padding: padding,
+      altBoundary: altBoundary
+    });
+    var basePlacement = getBasePlacement(state.placement);
+    var variation = getVariation(state.placement);
+    var isBasePlacement = !variation;
+    var mainAxis = getMainAxisFromPlacement(basePlacement);
+    var altAxis = getAltAxis(mainAxis);
+    var popperOffsets = state.modifiersData.popperOffsets;
+    var referenceRect = state.rects.reference;
+    var popperRect = state.rects.popper;
+    var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign({}, state.rects, {
+      placement: state.placement
+    })) : tetherOffset;
+    var normalizedTetherOffsetValue = typeof tetherOffsetValue === 'number' ? {
+      mainAxis: tetherOffsetValue,
+      altAxis: tetherOffsetValue
+    } : Object.assign({
+      mainAxis: 0,
+      altAxis: 0
+    }, tetherOffsetValue);
+    var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
+    var data = {
+      x: 0,
+      y: 0
+    };
+
+    if (!popperOffsets) {
+      return;
+    }
+
+    if (checkMainAxis) {
+      var _offsetModifierState$;
+
+      var mainSide = mainAxis === 'y' ? top : left;
+      var altSide = mainAxis === 'y' ? bottom : right;
+      var len = mainAxis === 'y' ? 'height' : 'width';
+      var offset = popperOffsets[mainAxis];
+      var min$1 = offset + overflow[mainSide];
+      var max$1 = offset - overflow[altSide];
+      var additive = tether ? -popperRect[len] / 2 : 0;
+      var minLen = variation === start ? referenceRect[len] : popperRect[len];
+      var maxLen = variation === start ? -popperRect[len] : -referenceRect[len]; // We need to include the arrow in the calculation so the arrow doesn't go
+      // outside the reference bounds
+
+      var arrowElement = state.elements.arrow;
+      var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
+        width: 0,
+        height: 0
+      };
+      var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : getFreshSideObject();
+      var arrowPaddingMin = arrowPaddingObject[mainSide];
+      var arrowPaddingMax = arrowPaddingObject[altSide]; // If the reference length is smaller than the arrow length, we don't want
+      // to include its full size in the calculation. If the reference is small
+      // and near the edge of a boundary, the popper can overflow even if the
+      // reference is not overflowing as well (e.g. virtual elements with no
+      // width or height)
+
+      var arrowLen = within(0, referenceRect[len], arrowRect[len]);
+      var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis : minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis;
+      var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
+      var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
+      var clientOffset = arrowOffsetParent ? mainAxis === 'y' ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
+      var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
+      var tetherMin = offset + minOffset - offsetModifierValue - clientOffset;
+      var tetherMax = offset + maxOffset - offsetModifierValue;
+      var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
+      popperOffsets[mainAxis] = preventedOffset;
+      data[mainAxis] = preventedOffset - offset;
+    }
+
+    if (checkAltAxis) {
+      var _offsetModifierState$2;
+
+      var _mainSide = mainAxis === 'x' ? top : left;
+
+      var _altSide = mainAxis === 'x' ? bottom : right;
+
+      var _offset = popperOffsets[altAxis];
+
+      var _len = altAxis === 'y' ? 'height' : 'width';
+
+      var _min = _offset + overflow[_mainSide];
+
+      var _max = _offset - overflow[_altSide];
+
+      var isOriginSide = [top, left].indexOf(basePlacement) !== -1;
+
+      var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
+
+      var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
+
+      var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
+
+      var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
+
+      popperOffsets[altAxis] = _preventedOffset;
+      data[altAxis] = _preventedOffset - _offset;
+    }
+
+    state.modifiersData[name] = data;
+  } // eslint-disable-next-line import/no-unused-modules
+
+
+  const preventOverflow$1 = {
+    name: 'preventOverflow',
+    enabled: true,
+    phase: 'main',
+    fn: preventOverflow,
+    requiresIfExists: ['offset']
+  };
+
+  function getHTMLElementScroll(element) {
+    return {
+      scrollLeft: element.scrollLeft,
+      scrollTop: element.scrollTop
+    };
+  }
+
+  function getNodeScroll(node) {
+    if (node === getWindow(node) || !isHTMLElement(node)) {
+      return getWindowScroll(node);
+    } else {
+      return getHTMLElementScroll(node);
+    }
+  }
+
+  function isElementScaled(element) {
+    var rect = element.getBoundingClientRect();
+    var scaleX = round(rect.width) / element.offsetWidth || 1;
+    var scaleY = round(rect.height) / element.offsetHeight || 1;
+    return scaleX !== 1 || scaleY !== 1;
+  } // Returns the composite rect of an element relative to its offsetParent.
+  // Composite means it takes into account transforms as well as layout.
+
+
+  function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
+    if (isFixed === void 0) {
+      isFixed = false;
+    }
+
+    var isOffsetParentAnElement = isHTMLElement(offsetParent);
+    var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
+    var documentElement = getDocumentElement(offsetParent);
+    var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
+    var scroll = {
+      scrollLeft: 0,
+      scrollTop: 0
+    };
+    var offsets = {
+      x: 0,
+      y: 0
+    };
+
+    if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+      if (getNodeName(offsetParent) !== 'body' || // https://github.com/popperjs/popper-core/issues/1078
+      isScrollParent(documentElement)) {
+        scroll = getNodeScroll(offsetParent);
+      }
+
+      if (isHTMLElement(offsetParent)) {
+        offsets = getBoundingClientRect(offsetParent, true);
+        offsets.x += offsetParent.clientLeft;
+        offsets.y += offsetParent.clientTop;
+      } else if (documentElement) {
+        offsets.x = getWindowScrollBarX(documentElement);
+      }
+    }
+
+    return {
+      x: rect.left + scroll.scrollLeft - offsets.x,
+      y: rect.top + scroll.scrollTop - offsets.y,
+      width: rect.width,
+      height: rect.height
+    };
+  }
+
+  function order(modifiers) {
+    var map = new Map();
+    var visited = new Set();
+    var result = [];
+    modifiers.forEach(function (modifier) {
+      map.set(modifier.name, modifier);
+    }); // On visiting object, check for its dependencies and visit them recursively
+
+    function sort(modifier) {
+      visited.add(modifier.name);
+      var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
+      requires.forEach(function (dep) {
+        if (!visited.has(dep)) {
+          var depModifier = map.get(dep);
+
+          if (depModifier) {
+            sort(depModifier);
+          }
+        }
+      });
+      result.push(modifier);
+    }
+
+    modifiers.forEach(function (modifier) {
+      if (!visited.has(modifier.name)) {
+        // check for visited object
+        sort(modifier);
+      }
+    });
+    return result;
+  }
+
+  function orderModifiers(modifiers) {
+    // order based on dependencies
+    var orderedModifiers = order(modifiers); // order based on phase
+
+    return modifierPhases.reduce(function (acc, phase) {
+      return acc.concat(orderedModifiers.filter(function (modifier) {
+        return modifier.phase === phase;
+      }));
+    }, []);
+  }
+
+  function debounce(fn) {
+    var pending;
+    return function () {
+      if (!pending) {
+        pending = new Promise(function (resolve) {
+          Promise.resolve().then(function () {
+            pending = undefined;
+            resolve(fn());
+          });
+        });
+      }
+
+      return pending;
+    };
+  }
+
+  function mergeByName(modifiers) {
+    var merged = modifiers.reduce(function (merged, current) {
+      var existing = merged[current.name];
+      merged[current.name] = existing ? Object.assign({}, existing, current, {
+        options: Object.assign({}, existing.options, current.options),
+        data: Object.assign({}, existing.data, current.data)
+      }) : current;
+      return merged;
+    }, {}); // IE11 does not support Object.values
+
+    return Object.keys(merged).map(function (key) {
+      return merged[key];
+    });
+  }
+
+  var DEFAULT_OPTIONS = {
+    placement: 'bottom',
+    modifiers: [],
+    strategy: 'absolute'
+  };
+
+  function areValidElements() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return !args.some(function (element) {
+      return !(element && typeof element.getBoundingClientRect === 'function');
+    });
+  }
+
+  function popperGenerator(generatorOptions) {
+    if (generatorOptions === void 0) {
+      generatorOptions = {};
+    }
+
+    var _generatorOptions = generatorOptions,
+        _generatorOptions$def = _generatorOptions.defaultModifiers,
+        defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
+        _generatorOptions$def2 = _generatorOptions.defaultOptions,
+        defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
+    return function createPopper(reference, popper, options) {
+      if (options === void 0) {
+        options = defaultOptions;
+      }
+
+      var state = {
+        placement: 'bottom',
+        orderedModifiers: [],
+        options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
+        modifiersData: {},
+        elements: {
+          reference: reference,
+          popper: popper
+        },
+        attributes: {},
+        styles: {}
+      };
+      var effectCleanupFns = [];
+      var isDestroyed = false;
+      var instance = {
+        state: state,
+        setOptions: function setOptions(setOptionsAction) {
+          var options = typeof setOptionsAction === 'function' ? setOptionsAction(state.options) : setOptionsAction;
+          cleanupModifierEffects();
+          state.options = Object.assign({}, defaultOptions, state.options, options);
+          state.scrollParents = {
+            reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
+            popper: listScrollParents(popper)
+          }; // Orders the modifiers based on their dependencies and `phase`
+          // properties
+
+          var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
+
+          state.orderedModifiers = orderedModifiers.filter(function (m) {
+            return m.enabled;
+          }); // Validate the provided modifiers so that the consumer will get warned
+
+          runModifierEffects();
+          return instance.update();
+        },
+        // Sync update – it will always be executed, even if not necessary. This
+        // is useful for low frequency updates where sync behavior simplifies the
+        // logic.
+        // For high frequency updates (e.g. `resize` and `scroll` events), always
+        // prefer the async Popper#update method
+        forceUpdate: function forceUpdate() {
+          if (isDestroyed) {
+            return;
+          }
+
+          var _state$elements = state.elements,
+              reference = _state$elements.reference,
+              popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
+          // anymore
+
+          if (!areValidElements(reference, popper)) {
+
+            return;
+          } // Store the reference and popper rects to be read by modifiers
+
+
+          state.rects = {
+            reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
+            popper: getLayoutRect(popper)
+          }; // Modifiers have the ability to reset the current update cycle. The
+          // most common use case for this is the `flip` modifier changing the
+          // placement, which then needs to re-run all the modifiers, because the
+          // logic was previously ran for the previous placement and is therefore
+          // stale/incorrect
+
+          state.reset = false;
+          state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
+          // is filled with the initial data specified by the modifier. This means
+          // it doesn't persist and is fresh on each update.
+          // To ensure persistent data, use `${name}#persistent`
+
+          state.orderedModifiers.forEach(function (modifier) {
+            return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
+          });
+
+          for (var index = 0; index < state.orderedModifiers.length; index++) {
+
+            if (state.reset === true) {
+              state.reset = false;
+              index = -1;
+              continue;
+            }
+
+            var _state$orderedModifie = state.orderedModifiers[index],
+                fn = _state$orderedModifie.fn,
+                _state$orderedModifie2 = _state$orderedModifie.options,
+                _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
+                name = _state$orderedModifie.name;
+
+            if (typeof fn === 'function') {
+              state = fn({
+                state: state,
+                options: _options,
+                name: name,
+                instance: instance
+              }) || state;
+            }
+          }
+        },
+        // Async and optimistically optimized update – it will not be executed if
+        // not necessary (debounced to run at most once-per-tick)
+        update: debounce(function () {
+          return new Promise(function (resolve) {
+            instance.forceUpdate();
+            resolve(state);
+          });
+        }),
+        destroy: function destroy() {
+          cleanupModifierEffects();
+          isDestroyed = true;
+        }
+      };
+
+      if (!areValidElements(reference, popper)) {
+
+        return instance;
+      }
+
+      instance.setOptions(options).then(function (state) {
+        if (!isDestroyed && options.onFirstUpdate) {
+          options.onFirstUpdate(state);
+        }
+      }); // Modifiers have the ability to execute arbitrary code before the first
+      // update cycle runs. They will be executed in the same order as the update
+      // cycle. This is useful when a modifier adds some persistent data that
+      // other modifiers need to use, but the modifier is run after the dependent
+      // one.
+
+      function runModifierEffects() {
+        state.orderedModifiers.forEach(function (_ref3) {
+          var name = _ref3.name,
+              _ref3$options = _ref3.options,
+              options = _ref3$options === void 0 ? {} : _ref3$options,
+              effect = _ref3.effect;
+
+          if (typeof effect === 'function') {
+            var cleanupFn = effect({
+              state: state,
+              name: name,
+              instance: instance,
+              options: options
+            });
+
+            var noopFn = function noopFn() {};
+
+            effectCleanupFns.push(cleanupFn || noopFn);
+          }
+        });
+      }
+
+      function cleanupModifierEffects() {
+        effectCleanupFns.forEach(function (fn) {
+          return fn();
+        });
+        effectCleanupFns = [];
+      }
+
+      return instance;
+    };
+  }
+  var createPopper$2 = /*#__PURE__*/popperGenerator(); // eslint-disable-next-line import/no-unused-modules
+
+  var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
+  var createPopper$1 = /*#__PURE__*/popperGenerator({
+    defaultModifiers: defaultModifiers$1
+  }); // eslint-disable-next-line import/no-unused-modules
+
+  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var createPopper = /*#__PURE__*/popperGenerator({
+    defaultModifiers: defaultModifiers
+  }); // eslint-disable-next-line import/no-unused-modules
+
+  const Popper = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    popperGenerator,
+    detectOverflow,
+    createPopperBase: createPopper$2,
+    createPopper,
+    createPopperLite: createPopper$1,
+    top,
+    bottom,
+    right,
+    left,
+    auto,
+    basePlacements,
+    start,
+    end,
+    clippingParents,
+    viewport,
+    popper,
+    reference,
+    variationPlacements,
+    placements,
+    beforeRead,
+    read,
+    afterRead,
+    beforeMain,
+    main,
+    afterMain,
+    beforeWrite,
+    write,
+    afterWrite,
+    modifierPhases,
+    applyStyles: applyStyles$1,
+    arrow: arrow$1,
+    computeStyles: computeStyles$1,
+    eventListeners,
+    flip: flip$1,
+    hide: hide$1,
+    offset: offset$1,
+    popperOffsets: popperOffsets$1,
+    preventOverflow: preventOverflow$1
+  }, Symbol.toStringTag, { value: 'Module' }));
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap (v5.2.3): dropdown.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  /**
+   * Constants
+   */
+
+  const NAME$a = 'dropdown';
+  const DATA_KEY$6 = 'bs.dropdown';
+  const EVENT_KEY$6 = `.${DATA_KEY$6}`;
+  const DATA_API_KEY$3 = '.data-api';
+  const ESCAPE_KEY$2 = 'Escape';
+  const TAB_KEY$1 = 'Tab';
+  const ARROW_UP_KEY$1 = 'ArrowUp';
+  const ARROW_DOWN_KEY$1 = 'ArrowDown';
+  const RIGHT_MOUSE_BUTTON = 2; // MouseEvent.button value for the secondary button, usually the right button
+
+  const EVENT_HIDE$5 = `hide${EVENT_KEY$6}`;
+  const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$6}`;
+  const EVENT_SHOW$5 = `show${EVENT_KEY$6}`;
+  const EVENT_SHOWN$5 = `shown${EVENT_KEY$6}`;
+  const EVENT_CLICK_DATA_API$3 = `click${EVENT_KEY$6}${DATA_API_KEY$3}`;
+  const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$6}${DATA_API_KEY$3}`;
+  const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY$6}${DATA_API_KEY$3}`;
+  const CLASS_NAME_SHOW$6 = 'show';
+  const CLASS_NAME_DROPUP = 'dropup';
+  const CLASS_NAME_DROPEND = 'dropend';
+  const CLASS_NAME_DROPSTART = 'dropstart';
+  const CLASS_NAME_DROPUP_CENTER = 'dropup-center';
+  const CLASS_NAME_DROPDOWN_CENTER = 'dropdown-center';
+  const SELECTOR_DATA_TOGGLE$3 = '[data-bs-toggle="dropdown"]:not(.disabled):not(:disabled)';
+  const SELECTOR_DATA_TOGGLE_SHOWN = `${SELECTOR_DATA_TOGGLE$3}.${CLASS_NAME_SHOW$6}`;
+  const SELECTOR_MENU = '.dropdown-menu';
+  const SELECTOR_NAVBAR = '.navbar';
+  const SELECTOR_NAVBAR_NAV = '.navbar-nav';
+  const SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)';
+  const PLACEMENT_TOP = isRTL() ? 'top-end' : 'top-start';
+  const PLACEMENT_TOPEND = isRTL() ? 'top-start' : 'top-end';
+  const PLACEMENT_BOTTOM = isRTL() ? 'bottom-end' : 'bottom-start';
+  const PLACEMENT_BOTTOMEND = isRTL() ? 'bottom-start' : 'bottom-end';
+  const PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
+  const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
+  const PLACEMENT_TOPCENTER = 'top';
+  const PLACEMENT_BOTTOMCENTER = 'bottom';
+  const Default$9 = {
+    autoClose: true,
+    boundary: 'clippingParents',
+    display: 'dynamic',
+    offset: [0, 2],
+    popperConfig: null,
+    reference: 'toggle'
+  };
+  const DefaultType$9 = {
+    autoClose: '(boolean|string)',
+    boundary: '(string|element)',
+    display: 'string',
+    offset: '(array|string|function)',
+    popperConfig: '(null|object|function)',
+    reference: '(string|element|object)'
+  };
+  /**
+   * Class definition
+   */
+
+  class Dropdown extends BaseComponent {
+    constructor(element, config) {
+      super(element, config);
+      this._popper = null;
+      this._parent = this._element.parentNode; // dropdown wrapper
+      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+
+      this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
+      this._inNavbar = this._detectNavbar();
+    } // Getters
+
+
+    static get Default() {
+      return Default$9;
+    }
+
+    static get DefaultType() {
+      return DefaultType$9;
+    }
+
+    static get NAME() {
+      return NAME$a;
+    } // Public
+
+
+    toggle() {
+      return this._isShown() ? this.hide() : this.show();
+    }
+
+    show() {
+      if (isDisabled(this._element) || this._isShown()) {
+        return;
+      }
+
+      const relatedTarget = {
+        relatedTarget: this._element
+      };
+      const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, relatedTarget);
+
+      if (showEvent.defaultPrevented) {
+        return;
+      }
+
+      this._createPopper(); // If this is a touch-enabled device we add extra
+      // empty mouseover listeners to the body's immediate children;
+      // only needed because of broken event delegation on iOS
+      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+
+
+      if ('ontouchstart' in document.documentElement && !this._parent.closest(SELECTOR_NAVBAR_NAV)) {
+        for (const element of [].concat(...document.body.children)) {
+          EventHandler.on(element, 'mouseover', noop);
+        }
+      }
+
+      this._element.focus();
+
+      this._element.setAttribute('aria-expanded', true);
+
+      this._menu.classList.add(CLASS_NAME_SHOW$6);
+
+      this._element.classList.add(CLASS_NAME_SHOW$6);
+
+      EventHandler.trigger(this._element, EVENT_SHOWN$5, relatedTarget);
+    }
+
+    hide() {
+      if (isDisabled(this._element) || !this._isShown()) {
+        return;
+      }
+
+      const relatedTarget = {
+        relatedTarget: this._element
+      };
+
+      this._completeHide(relatedTarget);
+    }
+
+    dispose() {
+      if (this._popper) {
+        this._popper.destroy();
+      }
+
+      super.dispose();
+    }
+
+    update() {
+      this._inNavbar = this._detectNavbar();
+
+      if (this._popper) {
+        this._popper.update();
+      }
+    } // Private
+
+
+    _completeHide(relatedTarget) {
+      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$5, relatedTarget);
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      } // If this is a touch-enabled device we remove the extra
+      // empty mouseover listeners we added for iOS support
+
+
+      if ('ontouchstart' in document.documentElement) {
+        for (const element of [].concat(...document.body.children)) {
+          EventHandler.off(element, 'mouseover', noop);
+        }
+      }
+
+      if (this._popper) {
+        this._popper.destroy();
+      }
+
+      this._menu.classList.remove(CLASS_NAME_SHOW$6);
+
+      this._element.classList.remove(CLASS_NAME_SHOW$6);
+
+      this._element.setAttribute('aria-expanded', 'false');
+
+      Manipulator.removeDataAttribute(this._menu, 'popper');
+      EventHandler.trigger(this._element, EVENT_HIDDEN$5, relatedTarget);
+    }
+
+    _getConfig(config) {
+      config = super._getConfig(config);
+
+      if (typeof config.reference === 'object' && !isElement$1(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
+        // Popper virtual elements require a getBoundingClientRect method
+        throw new TypeError(`${NAME$a.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
+      }
+
+      return config;
+    }
+
+    _createPopper() {
+      if (typeof Popper === 'undefined') {
+        throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+      }
+
+      let referenceElement = this._element;
+
+      if (this._config.reference === 'parent') {
+        referenceElement = this._parent;
+      } else if (isElement$1(this._config.reference)) {
+        referenceElement = getElement(this._config.reference);
+      } else if (typeof this._config.reference === 'object') {
+        referenceElement = this._config.reference;
+      }
+
+      const popperConfig = this._getPopperConfig();
+
+      this._popper = createPopper(referenceElement, this._menu, popperConfig);
+    }
+
+    _isShown() {
+      return this._menu.classList.contains(CLASS_NAME_SHOW$6);
+    }
+
+    _getPlacement() {
+      const parentDropdown = this._parent;
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPEND)) {
+        return PLACEMENT_RIGHT;
+      }
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPSTART)) {
+        return PLACEMENT_LEFT;
+      }
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPUP_CENTER)) {
+        return PLACEMENT_TOPCENTER;
+      }
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPDOWN_CENTER)) {
+        return PLACEMENT_BOTTOMCENTER;
+      } // We need to trim the value because custom properties can also include spaces
+
+
+      const isEnd = getComputedStyle(this._menu).getPropertyValue('--bs-position').trim() === 'end';
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
+        return isEnd ? PLACEMENT_TOPEND : PLACEMENT_TOP;
+      }
+
+      return isEnd ? PLACEMENT_BOTTOMEND : PLACEMENT_BOTTOM;
+    }
+
+    _detectNavbar() {
+      return this._element.closest(SELECTOR_NAVBAR) !== null;
+    }
+
+    _getOffset() {
+      const {
+        offset
+      } = this._config;
+
+      if (typeof offset === 'string') {
+        return offset.split(',').map(value => Number.parseInt(value, 10));
+      }
+
+      if (typeof offset === 'function') {
+        return popperData => offset(popperData, this._element);
+      }
+
+      return offset;
+    }
+
+    _getPopperConfig() {
+      const defaultBsPopperConfig = {
+        placement: this._getPlacement(),
+        modifiers: [{
+          name: 'preventOverflow',
+          options: {
+            boundary: this._config.boundary
+          }
+        }, {
+          name: 'offset',
+          options: {
+            offset: this._getOffset()
+          }
+        }]
+      }; // Disable Popper if we have a static display or Dropdown is in Navbar
+
+      if (this._inNavbar || this._config.display === 'static') {
+        Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // todo:v6 remove
+
+        defaultBsPopperConfig.modifiers = [{
+          name: 'applyStyles',
+          enabled: false
+        }];
+      }
+
+      return { ...defaultBsPopperConfig,
+        ...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
+      };
+    }
+
+    _selectMenuItem({
+      key,
+      target
+    }) {
+      const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter(element => isVisible(element));
+
+      if (!items.length) {
+        return;
+      } // if target isn't included in items (e.g. when expanding the dropdown)
+      // allow cycling to get the last item in case key equals ARROW_UP_KEY
+
+
+      getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
+    } // Static
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Dropdown.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      });
+    }
+
+    static clearMenus(event) {
+      if (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY$1) {
+        return;
+      }
+
+      const openToggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE_SHOWN);
+
+      for (const toggle of openToggles) {
+        const context = Dropdown.getInstance(toggle);
+
+        if (!context || context._config.autoClose === false) {
+          continue;
+        }
+
+        const composedPath = event.composedPath();
+        const isMenuTarget = composedPath.includes(context._menu);
+
+        if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !isMenuTarget || context._config.autoClose === 'outside' && isMenuTarget) {
+          continue;
+        } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
+
+
+        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
+          continue;
+        }
+
+        const relatedTarget = {
+          relatedTarget: context._element
+        };
+
+        if (event.type === 'click') {
+          relatedTarget.clickEvent = event;
+        }
+
+        context._completeHide(relatedTarget);
+      }
+    }
+
+    static dataApiKeydownHandler(event) {
+      // If not an UP | DOWN | ESCAPE key => not a dropdown command
+      // If input/textarea && if key is other than ESCAPE => not a dropdown command
+      const isInput = /input|textarea/i.test(event.target.tagName);
+      const isEscapeEvent = event.key === ESCAPE_KEY$2;
+      const isUpOrDownEvent = [ARROW_UP_KEY$1, ARROW_DOWN_KEY$1].includes(event.key);
+
+      if (!isUpOrDownEvent && !isEscapeEvent) {
+        return;
+      }
+
+      if (isInput && !isEscapeEvent) {
+        return;
+      }
+
+      event.preventDefault(); // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+
+      const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
+      const instance = Dropdown.getOrCreateInstance(getToggleButton);
+
+      if (isUpOrDownEvent) {
+        event.stopPropagation();
+        instance.show();
+
+        instance._selectMenuItem(event);
+
+        return;
+      }
+
+      if (instance._isShown()) {
+        // else is escape and we check if it is shown
+        event.stopPropagation();
+        instance.hide();
+        getToggleButton.focus();
+      }
+    }
+
+  }
+  /**
+   * Data API implementation
+   */
+
+
+  EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$3, Dropdown.dataApiKeydownHandler);
+  EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
+  EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
+  EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
+  EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
+    event.preventDefault();
+    Dropdown.getOrCreateInstance(this).toggle();
+  });
+  /**
+   * jQuery
+   */
+
+  defineJQueryPlugin(Dropdown);
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap (v5.2.3): util/scrollBar.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  /**
+   * Constants
+   */
+
+  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
+  const SELECTOR_STICKY_CONTENT = '.sticky-top';
+  const PROPERTY_PADDING = 'padding-right';
+  const PROPERTY_MARGIN = 'margin-right';
+  /**
+   * Class definition
+   */
+
+  class ScrollBarHelper {
+    constructor() {
+      this._element = document.body;
+    } // Public
+
+
+    getWidth() {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+      const documentWidth = document.documentElement.clientWidth;
+      return Math.abs(window.innerWidth - documentWidth);
+    }
+
+    hide() {
+      const width = this.getWidth();
+
+      this._disableOverFlow(); // give padding to element to balance the hidden scrollbar width
+
+
+      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
+
+
+      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+
+      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
+    }
+
+    reset() {
+      this._resetElementAttributes(this._element, 'overflow');
+
+      this._resetElementAttributes(this._element, PROPERTY_PADDING);
+
+      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
+
+      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
+    }
+
+    isOverflowing() {
+      return this.getWidth() > 0;
+    } // Private
+
+
+    _disableOverFlow() {
+      this._saveInitialAttribute(this._element, 'overflow');
+
+      this._element.style.overflow = 'hidden';
+    }
+
+    _setElementAttributes(selector, styleProperty, callback) {
+      const scrollbarWidth = this.getWidth();
+
+      const manipulationCallBack = element => {
+        if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+          return;
+        }
+
+        this._saveInitialAttribute(element, styleProperty);
+
+        const calculatedValue = window.getComputedStyle(element).getPropertyValue(styleProperty);
+        element.style.setProperty(styleProperty, `${callback(Number.parseFloat(calculatedValue))}px`);
+      };
+
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+
+    _saveInitialAttribute(element, styleProperty) {
+      const actualValue = element.style.getPropertyValue(styleProperty);
+
+      if (actualValue) {
+        Manipulator.setDataAttribute(element, styleProperty, actualValue);
+      }
+    }
+
+    _resetElementAttributes(selector, styleProperty) {
+      const manipulationCallBack = element => {
+        const value = Manipulator.getDataAttribute(element, styleProperty); // We only want to remove the property if the value is `null`; the value can also be zero
+
+        if (value === null) {
+          element.style.removeProperty(styleProperty);
+          return;
+        }
+
+        Manipulator.removeDataAttribute(element, styleProperty);
+        element.style.setProperty(styleProperty, value);
+      };
+
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+
+    _applyManipulationCallback(selector, callBack) {
+      if (isElement$1(selector)) {
+        callBack(selector);
+        return;
+      }
+
+      for (const sel of SelectorEngine.find(selector, this._element)) {
+        callBack(sel);
+      }
+    }
+
+  }
+
+
 
 }
   
