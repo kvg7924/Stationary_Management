@@ -45,6 +45,11 @@ if(!isset($_SESSION['username'])){
                                 <img src='./user_images/$userImg' alt='$username photo' class='img-profile img-thumbnail'/>
                             </li>";
                             ?>
+                            <li class="nav-item d-flex align-items-center gap-2">
+                                <a href="profile.php" class="nav-link fw-bold">
+                                    <h6>Pending Orders</h6>
+                                </a>
+                            </li>
                             <li class="table-group-divider"></li>
                             <li class="nav-item d-flex align-items-center gap-2">
                                 <a href="profile.php?edit_account" class="nav-link fw-bold">
@@ -64,6 +69,11 @@ if(!isset($_SESSION['username'])){
                                 </a>
                             </li>
                             <li class="table-group-divider"></li>
+                            <li class="nav-item d-flex align-items-center gap-2">
+                                <a href="./logout.php" class="nav-link fw-bold">
+                                    <h6>Logout</h6>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-10">
