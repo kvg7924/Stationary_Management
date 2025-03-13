@@ -108,6 +108,18 @@ include('../functions/common_functions.php');
         </div>
     </nav> -->
     <!-- End NavBar -->
+
+    <!-- php code to access user id  -->
+    <?php
+            $user_ip = getIPAddress();
+            $get_user_query = "SELECT * FROM `user_table` WHERE user_ip='$user_ip'";
+            $get_user_result = mysqli_query($con,$get_user_query);
+            $fetch_user = mysqli_fetch_array($get_user_result);
+            $user_id = $fetch_user['user_id'];
+
+        ?>
+        <!-- php code to access user id  -->
+         
 </body>
 
 </html>
