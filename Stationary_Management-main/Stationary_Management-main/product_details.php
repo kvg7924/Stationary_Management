@@ -15,6 +15,12 @@ session_start();
 </head>
 
 <body>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
