@@ -16,3 +16,19 @@
         }
     }
     ?>
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Edit Category</h1>
+            <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-3 mb-3">
+                <div class="form-outline">
+                    <label for="category_title" class="form-label">Product Title</label>
+                    <input type="text" name="category_title" id="category_title" class="form-control" required value="<?php echo $category_title;?>">
+                </div>
+                <div class="form-outline text-center">
+                    <input type="submit" value="Update Category" class="btn btn-primary" name="update_category">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
