@@ -22,7 +22,6 @@ session_start();
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active"  href="./index.php">Home</a>
@@ -101,7 +100,6 @@ session_start();
     <!-- Start Table Section -->
     <<div class="landing">
         <div class="container">
-            <div class="row py-5 m-0">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <table class="table table-bordered table-hover table-striped table-group-divider text-center">
                         <?php
