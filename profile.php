@@ -19,11 +19,12 @@ if(!isset($_SESSION['username'])){
 
 <body>
 
-        <!-- upper-nav -->
-        <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
+    <!-- upper-nav -->
+    <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
     </div>
     <!-- upper-nav -->
+
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -112,7 +113,7 @@ if(!isset($_SESSION['username'])){
         </div>
     </nav>
     <!-- End NavBar -->
-     
+
     <!-- Start All Prodcuts  -->
     <div class="all-prod">
         <div class="container">
@@ -127,6 +128,7 @@ if(!isset($_SESSION['username'])){
                 <div class="row mx-0">
                     <div class="col-md-2 side-nav p-0">
                         <!-- side nav  -->
+
                         <!-- Profile Tabs -->
                         <ul class="navbar-nav me-auto navbar-profile">
                             <?php
@@ -171,6 +173,7 @@ if(!isset($_SESSION['username'])){
                         </ul>
                     </div>
                     <div class="col-md-10">
+                        
                         <!-- Main View  -->
                         <div class="row">
                             <?php
