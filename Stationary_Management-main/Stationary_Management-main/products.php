@@ -77,6 +77,11 @@ session_start();
                 </div>
                 <div class="row mx-0">
                     <div class="col-md-2 side-nav p-0">
+                    <!-- Sidebar Toggle Button for Mobile -->
+                    <button class="btn btn-primary d-md-none mb-3" id="sidebarToggle">
+                        Toggle Sidebar
+                    </button>
+                    <div class="col-md-2 side-nav p-0" id="sideNav">
                         <!-- Brands -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item d-flex align-items-center gap-2">
@@ -86,6 +91,15 @@ session_start();
                             <?php getBrands(); ?>
                         </ul>
                         <div class="divider"></div>
+                        <!-- Brands -->
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item d-flex align-items-center gap-2">
+                                <span class="shape"></span>
+                                <a href="products.php" class="nav-link fw-bolder nav-title"><h4>Brands</h4></a>
+                            </li>
+                            <?php getBrands(); ?>
+                        </ul>
+                        <div class="divider"></div>       
                         <!-- Categories -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item d-flex align-items-center gap-2">
@@ -112,5 +126,12 @@ session_start();
     </div>
 
     <script src="./assets/js/bootstrap.bundle.js"></script>
+    <script>
+        // Toggle sidebar for mobile view
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sideNav = document.getElementById('sideNav');
+            sideNav.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
