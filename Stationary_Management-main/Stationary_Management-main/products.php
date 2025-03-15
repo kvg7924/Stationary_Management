@@ -52,12 +52,19 @@ session_start();
                         <a class="nav-link" href="#">
                             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <!-- User Icon -->
-                            </svg>
+                                </svg>
                             <span><?= isset($_SESSION['username']) ? "Welcome " . $_SESSION['username'] : "Welcome guest"; ?></span>
                         </a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='./users_area/<?= isset($_SESSION['username']) ? "logout.php">Logout" : "user_login.php">Login" ?></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php
+                            if (isset($_SESSION['username'])) {
+                                echo "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>";
+                                echo "<li><a class='dropdown-item' href='./users_area/logout.php'>Logout</a></li>";
+                            } else {
+                                echo "<li><a class='dropdown-item' href='./users_area/user_login.php'>Login</a></li>";
+                            }
+                            ?>
+                        </ul>
                     </li>
                 </ul>
             </div>
