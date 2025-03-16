@@ -70,3 +70,22 @@ include('../functions/common_functions.php');
     </div>
     <script src="./assets//js/bootstrap.bundle.js"></script>
 </body>
+
+<?php
+if (isset($_POST['user_register'])) {
+    $user_ip = getIPAddress();
+
+    // Select cart items and check if user has items in the cart
+    $select_cart_items = "SELECT * FROM `card_details` WHERE ip_address='$user_ip'";
+    $select_cart_items_result = mysqli_query($con, $select_cart_items);
+    $rows_count_cart_items = mysqli_num_rows($select_cart_items_result);
+
+    if ($rows_count_cart_items > 0) {
+        $_SESSION['username'] = $user_username;
+        echo "<script>window.alert('You have items in your cart');</script>";
+        echo "<script>window.open('checkout.php','_self');</script>";
+    } else {
+        echo "<script>window.open('../index.php','_self');</script>";
+    }
+}
+?>
