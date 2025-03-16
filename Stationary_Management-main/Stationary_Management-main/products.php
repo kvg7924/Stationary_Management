@@ -52,12 +52,19 @@ session_start();
                         <a class="nav-link" href="#">
                             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <!-- User Icon -->
-                            </svg>
+                                </svg>
                             <span><?= isset($_SESSION['username']) ? "Welcome " . $_SESSION['username'] : "Welcome guest"; ?></span>
                         </a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='./users_area/<?= isset($_SESSION['username']) ? "logout.php">Logout" : "user_login.php">Login" ?></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php
+                            if (isset($_SESSION['username'])) {
+                                echo "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>";
+                                echo "<li><a class='dropdown-item' href='./users_area/logout.php'>Logout</a></li>";
+                            } else {
+                                echo "<li><a class='dropdown-item' href='./users_area/user_login.php'>Login</a></li>";
+                            }
+                            ?>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -77,6 +84,11 @@ session_start();
                 </div>
                 <div class="row mx-0">
                     <div class="col-md-2 side-nav p-0">
+                    <!-- Sidebar Toggle Button for Mobile -->
+                    <button class="btn btn-primary d-md-none mb-3" id="sidebarToggle">
+                        Toggle Sidebar
+                    </button>
+                    <div class="col-md-2 side-nav p-0" id="sideNav">
                         <!-- Brands -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item d-flex align-items-center gap-2">
@@ -86,6 +98,15 @@ session_start();
                             <?php getBrands(); ?>
                         </ul>
                         <div class="divider"></div>
+                        <!-- Brands -->
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item d-flex align-items-center gap-2">
+                                <span class="shape"></span>
+                                <a href="products.php" class="nav-link fw-bolder nav-title"><h4>Brands</h4></a>
+                            </li>
+                            <?php getBrands(); ?>
+                        </ul>
+                        <div class="divider"></div>       
                         <!-- Categories -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item d-flex align-items-center gap-2">
@@ -112,5 +133,12 @@ session_start();
     </div>
 
     <script src="./assets/js/bootstrap.bundle.js"></script>
+    <script>
+        // Toggle sidebar for mobile view
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sideNav = document.getElementById('sideNav');
+            sideNav.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

@@ -15,6 +15,12 @@ session_start();
 </head>
 
 <body>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
@@ -90,10 +96,11 @@ session_start();
                         </a>
                     </li>
                     <?php
-                    if (!isset($_SESSION['username'])) {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/user_login.php'>Login</a></li>";
+                    if (isset($_SESSION['username'])) {
+                        echo "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>";
+                        echo "<li><a class='dropdown-item' href='./users_area/logout.php'>Logout</a></li>";
                     } else {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/logout.php'>Logout</a></li>";
+                        echo "<li><a class='dropdown-item' href='./users_area/user_login.php'>Login</a></li>";
                     }
                     ?>
                 </ul>
