@@ -28,7 +28,6 @@ session_start();
     <!-- upper-nav -->
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
             <a class="navbar-brand fw-bold" href="#">A1</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -137,5 +136,19 @@ session_start();
 
     <script src="./assets/js/bootstrap.bundle.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script>
+        // Dynamic filtering for categories and brands
+        document.querySelectorAll('.side-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const filterType = this.textContent.trim().toLowerCase();
+                fetch(`./functions/filter_products.php?filter_type=${filterType}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('product-container').innerHTML = data;
+                    });
+            });
+        });
+        </script>
 </body>
 </html>
