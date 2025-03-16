@@ -1,6 +1,6 @@
 <?php
 include('../includes/connect.php');
-// include('../functions/common_functions.php');
+
 @session_start();
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ include('../includes/connect.php');
         <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
     </div>
     <!-- upper-nav -->
+
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -117,11 +118,7 @@ include('../includes/connect.php');
         </div>
     </div>
     <!-- End Landing Section -->
-
-
-
-
-
+     
     <script src="../assets/js/bootstrap.bundle.js"></script>
 </body>
 
