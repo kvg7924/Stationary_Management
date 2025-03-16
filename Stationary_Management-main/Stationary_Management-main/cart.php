@@ -36,6 +36,12 @@ session_start();
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <?php
+                    $currentPage = basename($_SERVER['PHP_SELF']);
+                    $navLinks = ["Home" => "index.php", "Products" => "products.php", "About" => "#", "Contact" => "#"];
+                    foreach ($navLinks as $name => $link) {
+                        $activeClass = ($currentPage == $link) ? 'active' : '';
+                        echo "<li class='nav-item'><a class='nav-link $activeClass' href='./$link'>$name</a></li>";
+                    }
                         if(isset($_SESSION['username'])){                            
                             echo "
                             <li class='nav-item'>

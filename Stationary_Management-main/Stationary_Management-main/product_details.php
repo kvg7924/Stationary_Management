@@ -96,10 +96,11 @@ session_start();
                         </a>
                     </li>
                     <?php
-                    if (!isset($_SESSION['username'])) {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/user_login.php'>Login</a></li>";
+                    if (isset($_SESSION['username'])) {
+                        echo "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>";
+                        echo "<li><a class='dropdown-item' href='./users_area/logout.php'>Logout</a></li>";
                     } else {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/logout.php'>Logout</a></li>";
+                        echo "<li><a class='dropdown-item' href='./users_area/user_login.php'>Login</a></li>";
                     }
                     ?>
                 </ul>
