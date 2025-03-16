@@ -153,6 +153,13 @@ session_start();
                             <input type='submit' value='Checkout' class='btn btn-dark' name='checkout'>
                         </div>";
                     }
+                    else {
+                        echo '
+                        <div class="empty-cart-message">
+                            <h2>Your cart is empty</h2>
+                            <a href="./products.php" class="btn btn-primary mt-3">Continue Shopping</a>
+                        </div>';
+                    }
                     ?>
                 </form>
                 <?php

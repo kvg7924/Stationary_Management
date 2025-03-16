@@ -139,6 +139,15 @@ session_start();
             const sideNav = document.getElementById('sideNav');
             sideNav.classList.toggle('active');
         });
+        // Live search functionality
+        document.getElementById('searchBox').addEventListener('input', function() {
+            const searchValue = this.value;
+            fetch(`./functions/live_search.php?search_data=${searchValue}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('product-container').innerHTML = data;
+                });
+        });
     </script>
 </body>
 </html>
