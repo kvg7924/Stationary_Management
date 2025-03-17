@@ -74,5 +74,16 @@ include('header.php'); // Include the header and navigation bar
 </div>
 
 <script src="./assets/js/bootstrap.bundle.js"></script>
+<script>
+    // Hover effect on cart icon to show total price
+    const cartIcon = document.querySelector('.cart-icon');
+    const totalPrice = document.querySelector('.total-price');
+    cartIcon.addEventListener('mouseenter', () => {
+        totalPrice.classList.remove('d-none');
+    });
+    cartIcon.addEventListener('mouseleave', () => {
+        totalPrice.classList.add('d-none');
+    }); 
+</script>
 </body>
 </html>
