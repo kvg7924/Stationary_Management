@@ -22,11 +22,6 @@ session_start();
         </div>
     </div>
 
-    <!-- Upper Navigation -->
-    <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
-        <span>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a>Shop Now</a></span>
-    </div>
-
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand fw-bold" href="#">A1</a>
