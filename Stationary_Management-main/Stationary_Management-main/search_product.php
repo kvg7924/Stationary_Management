@@ -50,7 +50,7 @@ session_start();
                         }
                     ?>
                 </ul>
-                <form class="d-flex" action="" method="get">
+                <form class="d-flex" id="search-form" method="get">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
                     <input type="submit" value="Search" class="btn btn-outline-primary" name="search_data_btn">
                 </form>
@@ -120,9 +120,9 @@ session_start();
                             <?php getCategories(); ?>
                         </ul>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-10" >
                         <!-- Products -->
-                        <div class="row">
+                        <div class="row" id="product-container">
                             <?php
                             search_product();
                             filterCategoryProduct();
