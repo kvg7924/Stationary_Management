@@ -70,3 +70,44 @@ session_start();
             ?>
         </ul>
     </nav>
+<!-- Dark Mode Toggle -->
+<li class="nav-item">
+                <a class="nav-link" href="#" id="darkModeToggle">🌙</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+// Dark mode toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Load dark mode preference
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '☀️';
+}
+
+// Toggle event
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+        darkModeToggle.textContent = '☀️';
+    } else {
+        localStorage.setItem('dark-mode', 'disabled');
+        darkModeToggle.textContent = '🌙';
+    }
+});
+</script>
+
+<style>
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+.navbar-light.dark-mode {
+    background-color: #1f1f1f;
+}
+</style>
