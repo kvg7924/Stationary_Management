@@ -149,6 +149,9 @@ include("search_product.php");
                 .then(response => response.text())
                 .then(data => document.getElementById('product-container').innerHTML = data);
         });
+        document.getElementById('toggleSidebar').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('d-none');
+        });
     </script>
 </body>
 </html>
