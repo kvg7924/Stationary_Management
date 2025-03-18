@@ -216,7 +216,9 @@ session_start();
                                     </defs>
                                 </svg>
 
-                                </span>
+
+
+                            </span>
                             <span>SmartWatch</span>
                         </div>
                         <div class="card">
@@ -233,7 +235,10 @@ session_start();
                                     </defs>
                                 </svg>
 
-                                </span>
+
+
+
+                            </span>
                             <span>Camera</span>
                         </div>
                         <div class="card">
@@ -269,6 +274,12 @@ session_start();
                                         </clipPath>
                                     </defs>
                                 </svg>
+
+
+
+
+
+
 
                             </span>
                             <span>HeadPhones</span>
@@ -318,3 +329,5 @@ session_start();
 </body>
 
 </html>
+
+                 

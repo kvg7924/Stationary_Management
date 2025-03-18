@@ -50,7 +50,7 @@ session_start();
                         }
                     ?>
                 </ul>
-                <form class="d-flex" action="" method="get">
+                <form class="d-flex" id="search-form" method="get">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
                     <input type="submit" value="Search" class="btn btn-outline-primary" name="search_data_btn">
                 </form>
@@ -120,14 +120,28 @@ session_start();
                             <?php getCategories(); ?>
                         </ul>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-10" >
                         <!-- Products -->
-                        <div class="row">
+                        <div class="row" id="product-container">
                             <?php
                             search_product();
                             filterCategoryProduct();
                             ?>
                         </div>
+                         <!-- Pagination -->
+                         <nav aria-label="Page navigation">
+                            <ul class="pagination" id="pagination">
+                                <?php
+                                $items_per_page = 6; // Number of items per page
+                                $total_items = getTotalProducts(); // Function to get total number of products
+                                $total_pages = ceil($total_items / $items_per_page);
+
+                                for ($i = 1; $i <= $total_pages; $i++) {
+                                    echo "<li class='page-item'><a class='page-link' href='products.php?page=$i'>$i</a></li>";
+                                }
+                                ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
