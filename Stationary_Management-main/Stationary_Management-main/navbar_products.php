@@ -49,11 +49,11 @@ session_start();
     </div>
 </nav>
 <!-- Dark Mode Toggle -->
-<li class="nav-item">
-                <a class="nav-link" href="#" id="darkModeToggle">🌙</a>
-            </li>
-        </ul>
-    </div>
+<ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="darkModeToggle">🌙</a>
+        </li>
+    </ul>
 </nav>
 
 <script>
@@ -81,11 +81,39 @@ darkModeToggle.addEventListener('click', () => {
 </script>
 
 <style>
+/* Dark Mode Styles */
 .dark-mode {
     background-color: #121212;
     color: #ffffff;
 }
 .navbar-light.dark-mode {
     background-color: #1f1f1f;
+}
+
+/* Sticky Navbar */
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+/* Avatar Style */
+.navbar-nav .nav-link img {
+    margin-right: 8px;
+}
+
+/* Smooth Transition for Dark Mode */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.navbar-light {
+    transition: background-color 0.3s ease;
+}
+
+/* Active Link Styling */
+.navbar-nav .nav-item .active {
+    font-weight: bold;
+    color: #007bff !important;
 }
 </style>
