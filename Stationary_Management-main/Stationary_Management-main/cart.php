@@ -61,6 +61,27 @@ include('header.php'); // Include the header and navigation bar
             }
             ?>
         </form>
+        <div class="modal fade" id="cartSummaryModal" tabindex="-1" aria-labelledby="cartSummaryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cartSummaryModalLabel">Cart Summary</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Total Price: <strong>$<?php echo $total_price; ?></strong></p>
+                        <p>Apply Coupon:</p>
+                        <input type="text" name="coupon_code" class="form-control" placeholder="Enter Coupon Code">
+                        <button class="btn btn-success mt-2" type="submit" name="apply_coupon">Apply Coupon</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Proceed to Checkout" class="btn btn-primary" name="checkout_now">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <?php
         if (isset($_POST['remove_cart'])) {
             foreach ($_POST['removeitem'] as $remove_id) {
@@ -68,6 +89,30 @@ include('header.php'); // Include the header and navigation bar
                 mysqli_query($con, $delete_query);
             }
             echo "<script>window.open('cart.php','_self');</script>";
+        }
+
+        if (isset($_POST['update_cart'])) {
+            foreach ($_POST as $key => $value) {
+                if (strpos($key, 'qty_') !== false) {
+                    $product_id = substr($key, 4);
+                    $new_qty = (int)$value;
+                    $update_query = "UPDATE `card_details` SET quantity=$new_qty WHERE product_id=$product_id AND ip_address='$user_ip'";
+                    mysqli_query($con, $update_query);
+                }
+            }
+            echo "<script>window.open('cart.php','_self');</script>";
+        }
+
+        if (isset($_POST['apply_coupon'])) {
+            // Example coupon logic: 10% off
+            $coupon_code = $_POST['coupon_code'];
+            if ($coupon_code == 'DISCOUNT10') {
+                $discount = $total_price * 0.10;
+                $total_price -= $discount;
+                echo "<script>alert('Coupon Applied! You saved $$discount');</script>";
+            } else {
+                echo "<script>alert('Invalid Coupon Code');</script>";
+            }
         }
         ?>
     </div>
@@ -84,6 +129,10 @@ include('header.php'); // Include the header and navigation bar
     cartIcon.addEventListener('mouseleave', () => {
         totalPrice.classList.add('d-none');
     }); 
+    // Confirm Remove Item
+    function confirmRemove() {
+        return confirm("Are you sure you want to remove this item from the cart?");
+    }
 </script>
 </body>
 </html>
