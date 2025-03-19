@@ -45,14 +45,23 @@ include("./navbar.php"); // Include the navbar
 
                 <!-- Products Grid -->
                 <div class="col-md-9">
-                    <div class="row">
-                        <?php
-                        getProduct();
-                        filterCategoryProduct();
-                        filterBrandProduct();
-                        cart();
-                        ?>
-                    </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <!-- Sort Dropdown -->
+                    <select id="sortProducts" class="form-select w-25">
+                        <option value="default">Sort By</option>
+                        <option value="price_low">Price: Low to High</option>
+                        <option value="price_high">Price: High to Low</option>
+                        <option value="latest">Latest</option>
+                    </select>
+                </div>
+
+                <div class="row" id="product-container">
+                    <?php
+                    getProduct();
+                    filterCategoryProduct();
+                    filterBrandProduct();
+                    cart();
+                    ?>
                 </div>
             </div>
         </div>
