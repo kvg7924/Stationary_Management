@@ -18,7 +18,6 @@ include("./navbar.php"); // Include the navbar
 
 <!-- Products Section -->
 <div class="all-prod">
-    <div class="container">
         <div class="sub-container pt-4 pb-4">
             <div class="categ-header">
                 <div class="sub-title">
