@@ -25,13 +25,26 @@ function calculate_total_cart_price() {
 
 function viewDetails() {
     if (isset($_GET['product_id'])) {
-        $product_id = $_GET['product_id'];
+        global $con;
+        $product_id = mysqli_real_escape_string($con, $_GET['product_id']);
+        $query = "SELECT * FROM products WHERE product_id = '$product_id'";
+        $result = mysqli_query($con, $query);
+        return mysqli_fetch_assoc($result);
     }
+    return null;
 }
 
 // Function to fetch related products
-function getProduct($limit) {
-    $query = "SELECT * FROM products LIMIT $limit";
+function getProduct($limit, $page = 1) {
+    global $con;
+    $offset = ($page - 1) * $limit;
+    $query = "SELECT * FROM products LIMIT $limit OFFSET $offset";
+    $result = mysqli_query($con, $query);
+    $products = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $products[] = $row;
+    }
+    return $products;
 }
 
 // Handle adding items to the cart
