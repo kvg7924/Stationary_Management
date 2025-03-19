@@ -110,4 +110,15 @@ darkModeToggle.addEventListener('click', () => {
 .navbar-light.dark-mode {
     background-color: #1f1f1f;
 }
+/* Spinner Styles */
+#loadingSpinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+
 </style>
+</body>
+</html?
