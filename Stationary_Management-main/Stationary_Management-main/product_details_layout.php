@@ -55,11 +55,11 @@ session_start();
                     🛒 Cart <sup><?php echo get_cart_item_count(); ?></sup>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     👤 <?php echo isset($_SESSION['username']) ? "Welcome " . $_SESSION['username'] : "Welcome guest"; ?>
                 </a>
-            </li>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
             <?php
             if (isset($_SESSION['username'])) {
                 echo "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>";
@@ -70,3 +70,44 @@ session_start();
             ?>
         </ul>
     </nav>
+<!-- Dark Mode Toggle -->
+<li class="nav-item">
+                <a class="nav-link" href="#" id="darkModeToggle">🌙</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+// Dark mode toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Load dark mode preference
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '☀️';
+}
+
+// Toggle event
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+        darkModeToggle.textContent = '☀️';
+    } else {
+        localStorage.setItem('dark-mode', 'disabled');
+        darkModeToggle.textContent = '🌙';
+    }
+});
+</script>
+
+<style>
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+.navbar-light.dark-mode {
+    background-color: #1f1f1f;
+}
+</style>
