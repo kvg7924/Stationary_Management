@@ -25,6 +25,36 @@
                         <th>Delete</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <?php
+                        // Get Category info
+                        include 'db_connection.php';
+                        $get_category_query = "SELECT * FROM `categories`";
+                        $get_category_result = mysqli_query($con, $get_category_query);
+                        $id_number = 1;
+
+                        if(mysqli_num_rows($get_category_result) == 0) {
+                            echo "<tr><td colspan='4' class='text-danger'>No categories found.</td></tr>";
+                        } else {
+                            while($row = mysqli_fetch_assoc($get_category_result)) {
+                                $category_id = $row['category_id'];
+                                $category_title = $row['category_title'];
+                                echo "
+                                <tr>
+                                    <td>$id_number</td>
+                                    <td>$category_title</td>
+                                    <td>
+                                        <a href='index.php?edit_category=$category_id' class='btn btn-warning btn-sm'>Edit</a>
+                                    </td>
+                                    <td>
+                                        <a href='index.php?delete_category=$category_id' class='btn btn-danger btn-sm'>Delete</a>
+                                    </td>
+                                </tr>";
+                                $id_number++;
+                            }
+                        }
+                    ?>
+                </tbody>
             </table>
         </div>
     </div>
