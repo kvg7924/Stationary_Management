@@ -9,16 +9,16 @@ include('../functions/common_functions.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecommerce User Login Page</title>
+    <title>Student Shopper Login Page</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 
 <body>
-
+<?php include("../execution_time.php"); ?>
     <div class="register">
         <div class="container py-3">
-            <h2 class="text-center mb-4">User Login</h2>
+            <h2 class="text-center mb-4">Student Shopper Login</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <form action="" method="post" class="d-flex flex-column gap-4">
@@ -32,7 +32,7 @@ include('../functions/common_functions.php');
                             <label for="user_password" class="form-label">Password</label>
                             <input type="password" placeholder="Enter your password" autocomplete="off" required="required" name="user_password" id="user_password" class="form-control">
                         </div>
-                        <div><a href="" class="text-decoration-underline">Forget your password?</a></div>
+                       
                         <div>
                             <input type="submit" value="Login" class="btn btn-primary mb-2" name="user_login">
                             <p>
