@@ -1,4 +1,13 @@
-}
+<?php
+    // fetch all data
+    if(isset($_GET['edit_category'])){
+        $edit_id = $_GET['edit_category'];
+        $get_data_query = "SELECT * FROM `categories` WHERE category_id = $edit_id";
+        $get_data_result = mysqli_query($con,$get_data_query);
+        $row_fetch_data = mysqli_fetch_array($get_data_result);
+        $category_id = $row_fetch_data['category_id'];
+        $category_title = $row_fetch_data['category_title'];
+    }
     // edit category
     if(isset($_POST['update_category'])){
         $category_title = $_POST['category_title'];
@@ -16,7 +25,7 @@
         }
     }
     ?>
-    <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h1 class="text-center mb-4">Edit Category</h1>
