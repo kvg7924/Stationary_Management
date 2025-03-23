@@ -1,7 +1,5 @@
 <?php
-// include connect file from DB
-// include('./includes/connect.php');
-// getting products
+
 function getProduct($numToDisplay = '')
 {
     global $con;
@@ -62,6 +60,7 @@ function getProduct($numToDisplay = '')
         }
     }
 }
+
 // display unique product with category
 function filterCategoryProduct()
 {
@@ -371,18 +370,11 @@ function viewDetails()
                             <div class='divider'>
                             </div>
                             <form action='products.php?add_to_cart=$product_id'>
-                                <div class='buy-item d-flex gap-3 justify-content-center align-items-center'>
-                                    <div class='num-btns d-flex gap-1'>
-                                        <button type='button' class='btn btn-increase' onclick='increaseValueBtn()'>+</button>
-                                        <input type='number' class='form-control' name='num_of_items' id='num_of_items' value='1'>
-                                        <input type='hidden' class='form-control' name='add_to_cart' id='add_to_cart' value='$product_id'/>
-                                        <!-- <span class='num-of-items'>3</span> -->
-                                        <button type='button' class='btn btn-decrease' onclick='decreaseValueBtn()'> -</button>
-                                    </div>
+                              
                                     <div>
                                         <input type='submit' class='btn btn-primary' value='Buy Now'>
                                     </div>
-                                </div>
+                                
                             </form>
                             <div class='delivery d-flex flex-column my-4 gap-3'>
                                 <div class='d-flex gap-2 align-items-center'>
@@ -406,7 +398,7 @@ function viewDetails()
                                     </span>
                                     <div class='d-flex flex-column gap-2'>
                                         <h6>Free Delivery</h6>
-                                        <span>Enter your postal code for Delivery Availability</span>
+                                        <span>Delivery Availability</span>
                                     </div>
                                 </div>
                                 <div class='d-flex gap-2 align-items-center'>
