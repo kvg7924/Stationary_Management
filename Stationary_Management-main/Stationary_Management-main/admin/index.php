@@ -2,7 +2,6 @@
     include('../includes/connect.php');
     include('../functions/common_functions.php');
     session_start();
-    
     if(isset($_SESSION['admin_username'])){
         $admin_name = $_SESSION['admin_username'];
         $get_admin_data = "SELECT * FROM `admin_table` WHERE admin_name = '$admin_name'";
@@ -54,7 +53,60 @@
             </div>
         </div>
     </nav>
-
+    <!-- End NavBar -->
+    <!-- Start Control Buttons -->
+    <div class="control">
+        <div class="container pt-4 pb-0">
+            <div class="categ-header">
+                <div class="sub-title">
+                    <span class="shape"></span>
+                    <span class="title">Admin Dashboard</span>
+                </div>
+                <h2>Manage Details Of Ecommerce</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <div class="admin-image">
+                        <a href="./index.php"><img src="./admin_images/<?php echo $admin_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
+                        <p><?php echo $admin_name;?></p>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="buttons">
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="./insert_product.php" class="nav-link">Insert Products</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?view_products" class="nav-link">View Products</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?insert_category" class="nav-link">Insert Categories</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?view_categories" class="nav-link">View Categories</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?insert_brand" class="nav-link">Insert Brands</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?view_brands" class="nav-link">View Brands</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?list_orders" class="nav-link">All Orders</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?list_payments" class="nav-link">All Payments</a>
+                        </button>
+                        <button class="btn btn-outline-primary m-2">
+                            <a href="index.php?list_users" class="nav-link">List Users</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Control Buttons -->
+        <!-- divider  -->
     <div class="container">
         <div class="divider"></div>
     </div>
