@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Brands Page</title>
+    <title>Stationery Brands Page</title>
 </head>
 
 <body>
+<?php include("../execution_time.php"); ?>
     <div class="container">
         <div class="categ-header">
             <div class="sub-title">
@@ -61,7 +62,7 @@
                                                     </span>
                                                     <h2>Are you sure?</h2>
                                                     <p>
-                                                        Do you really want to delete these records? this process cannot be done.
+                                                        Do you really want to delete these records? 
                                                     </p>
                                                     <div class='btns d-flex gap-3'>
                                                         <button type='button' class='btn px-5 btn-secondary' data-bs-dismiss='modal'>Cancel</button>
