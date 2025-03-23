@@ -9,17 +9,17 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecommerce Admin Login</title>
+    <title>Inventory specialist Login</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 
 <body>
-
+<?php include("../execution_time.php"); ?>
     <!-- Start Landing Section -->
     <div class="landing admin-register">
         <div class="">
-            <h2 class="text-center mb-1">Admin Login</h2>
+            <h2 class="text-center mb-1">Inventory specialist Login</h2>
             <h4 class="text-center mb-3 fw-light">Login to your account</h4>
             <div class="row m-0 align-items-center">
                 <div class="col-md-6 p-0 d-none d-md-block">
@@ -36,9 +36,7 @@ session_start();
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter your Password" required>
                             </div>
-                            <div class="form-outline">
-                                <a href="" class="text-2 text-decoration-underline">Forgot your passowrd?</a>
-                            </div>
+                          
                             <div class="form-outline">
                                 <input type="submit" value="Login" class="btn btn-primary mb-3" name="admin_login">
                                 <p class="small">
@@ -51,7 +49,7 @@ session_start();
             </div>
         </div>
     </div>
- 
+  
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
 </body>
