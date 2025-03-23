@@ -1,30 +1,43 @@
 <?php
 include('../includes/connect.php');
-if (isset($_POST['insert_categ_title'])) {
-    $category_title = $_POST['categ_title'];
-    $select_query = "SELECT * FROM `categories` WHERE category_title = '$category_title'";
-    $select_result = mysqli_query($con,$select_query);
-    $numOfResults = mysqli_num_rows($select_result);
-    if ($numOfResults > 0) {
-        echo "<script>alert('Category is already in Database');</script>";
-    } else {
 
-        $insert_query = "INSERT INTO `categories` (category_title) VALUES ('$category_title')";
-        $insert_result = mysqli_query($con, $insert_query);
-        if ($insert_result){
-            echo "<script>alert('Category has been inserted successfully');</script>";
+if (isset($_POST['insert_categ_title'])) {
+    $category_title = trim($_POST['categ_title']); // Trim whitespace from input
+
+    // Check if the input is empty
+    if (empty($category_title)) {
+        echo "<script>alert('Category title cannot be empty');</script>";
+    } else {
+        // Check if the category already exists
+        $select_query = "SELECT * FROM `categories` WHERE category_title = '$category_title'";
+        $select_result = mysqli_query($con, $select_query);
+        $numOfResults = mysqli_num_rows($select_result);
+
+        if ($numOfResults > 0) {
+            echo "<script>alert('This Category is already in the database');</script>";
+        } else {
+            // Insert the category into the database
+            $insert_query = "INSERT INTO `categories` (category_title) VALUES ('$category_title')";
+            $insert_result = mysqli_query($con, $insert_query);
+
+            if ($insert_result) {
+                echo "<script>alert('Category has been inserted successfully');</script>";
+            } else {
+                echo "<script>alert('Failed to insert category');</script>";
+            }
         }
     }
 }
 ?>
 
 <div class="categ-header">
-            <div class="sub-title">
-                <span class="shape"></span>
-                <h2>Insert Categories</h2>
-            </div>
-        </div>
-        <form action="" method="POST" class="mb-2">
+    <div class="sub-title">
+        <span class="shape"></span>
+        <h2>Insert Categories</h2>
+    </div>
+</div>
+
+<form action="" method="POST" class="mb-2" onsubmit="return validateForm()">
     <div class="input-group w-90 mb-3">
         <span class="input-group-text secondry-1" id="basic-addon1">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill="#ffffff" viewBox="0 0 384 512">
@@ -37,3 +50,17 @@ if (isset($_POST['insert_categ_title'])) {
         <input type="submit" class="btn btn-primary" name="insert_categ_title" value="Insert Categories" aria-label="Username" aria-describedby="basic-addon1">
     </div>
 </form>
+
+<script>
+// JavaScript function to validate the form
+function validateForm() {
+    var categoryTitle = document.querySelector('input[name="categ_title"]').value.trim();
+
+    if (categoryTitle === "") {
+        alert("Category title cannot be empty");
+        return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission
+}
+</script>
