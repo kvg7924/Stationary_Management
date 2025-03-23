@@ -373,7 +373,6 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  appearance: button;
   -webkit-appearance: button;
 }
 button:not(:disabled),
@@ -432,7 +431,6 @@ legend + * {
 
 [type=search] {
   outline-offset: -2px;
-  appearance: textfield;
   -webkit-appearance: textfield;
 }
 
@@ -459,7 +457,6 @@ legend + * {
 
 ::file-selector-button {
   font: inherit;
-  appearance: button;
   -webkit-appearance: button;
 }
 
@@ -2271,7 +2268,7 @@ textarea.form-control-lg {
   -moz-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+  color-adjust: exact;
   print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
@@ -10874,4 +10871,3 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-

@@ -1,5 +1,4 @@
 
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -33,7 +32,9 @@ CREATE TABLE `admin_table` (
 --
 
 INSERT INTO `admin_table` (`admin_id`, `admin_name`, `admin_email`, `admin_image`, `admin_password`) VALUES
-(1, 'abdo', 'abdo@gmail.com', 'logo after 3d_2.png', '$2y$10$M/A/r5j/GSeJrAZxI8NtRu9eG5yNltfgTrfQVoClfSIF/pzNUXa2W');
+(1, 'mihar', 'mihar@gmail.com', 'logo after 3d_2.png', '$2y$10$M/A/r5j/GSeJrAZxI8NtRu9eG5yNltfgTrfQVoClfSIF/pzNUXa2W'),
+(4, 'nup', 'nup@gmail.com', 'IMG-20240722-WA0052.jpg', '$2y$10$h/4rV9sjF7sX2pnEOveLw.x4F6ChJlEl7F3ObRxKdWON6CQyeoWRy'),
+(5, 'kvg', 'kvg@gmail.com', 'bgregister.png', '$2y$10$QyhAFg4Nmij/4xrOGXRRr.LorevBWvSfprlVJsJYiFoFpK3/8Xe/O');
 
 -- --------------------------------------------------------
 
@@ -51,17 +52,14 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`brand_id`, `brand_title`) VALUES
-(1, 'Canon'),
-(2, 'Lenovo'),
-(3, 'Nike'),
-(4, 'Dell'),
-(5, 'Polo'),
-(6, 'Hp'),
-(7, 'Apple'),
-(8, 'Oppo'),
-(9, 'Other'),
-(10, 'Samsung'),
-(13, 'Nokia');
+(2, 'Casio'),
+(4, 'Pentel'),
+(5, 'Five Star'),
+(6, 'Tri-Art Mfg'),
+(14, 'Pelikan Erasers AS-40'),
+(15, 'Faber-Castell'),
+(16, 'Moleskine'),
+(17, 'Stabilo');
 
 -- --------------------------------------------------------
 
@@ -91,13 +89,14 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_title`) VALUES
-(1, 'Mobiles'),
+(1, 'Notebooks '),
 (2, 'Books'),
-(3, 'Food'),
-(4, 'Clothes'),
-(5, 'HeadPhones'),
-(6, 'Electronics'),
-(7, 'Accessories');
+(3, 'Stationary'),
+(4, 'Boards & Planning Tools'),
+(5, 'Writing Instruments'),
+(6, 'Art & Craft Supplies'),
+(7, 'Calculators '),
+(8, 'Pencils');
 
 -- --------------------------------------------------------
 
@@ -123,7 +122,19 @@ INSERT INTO `orders_pending` (`order_id`, `user_id`, `invoice_number`, `product_
 (2, 1, 312346784, 2, 1, 'pending'),
 (3, 1, 312346784, 4, 1, 'pending'),
 (4, 1, 1918753782, 3, 2, 'pending'),
-(5, 1, 351837813, 1, 2, 'pending');
+(5, 1, 351837813, 1, 2, 'pending'),
+(6, 1, 410162768, 2, 1, 'pending'),
+(7, 1, 1679698018, 3, 5, 'pending'),
+(8, 1, 397854606, 2, 1, 'pending'),
+(9, 1, 397854606, 3, 1, 'pending'),
+(10, 1, 397854606, 9, 1, 'pending'),
+(11, 1, 2054593820, 3, 1, 'pending'),
+(12, 1, 775783111, 5, 1, 'pending'),
+(13, 1, 775783111, 11, 1, 'pending'),
+(14, 1, 1613463308, 1, 1, 'pending'),
+(15, 1, 1613463308, 5, 1, 'pending'),
+(16, 1, 1613463308, 7, 1, 'pending'),
+(17, 1, 641033000, 8, 1, 'pending');
 
 -- --------------------------------------------------------
 
@@ -151,10 +162,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_title`, `product_description`, `product_keywords`, `category_id`, `brand_id`, `product_image_one`, `product_image_two`, `product_image_three`, `product_price`, `date`, `status`) VALUES
-(1, 'HAVIT HV-G92 Gamepad', 'allows you to use the familiar layout and buttons to enjoy console control when playing games on your PC The Havit HV-G92 also has multiple game profiles for pressure and controller settings', 'gamepad , havit , hv-g92 , logistech', 6, 9, 'havit1.png', 'havit2.png', 'havit1.png', 120, '2023-08-29 18:05:15', 'true'),
-(2, 'ASUS FHD Gaming Laptop', 'Laptop ASUS TUF Gaming F15 FX506HF-HN001W(11th Intel® Core™ i5 11400H - Ram 8GB - Hard 512 GB SSD - GPU Nvidia Geforce RTX™ 2050 4GB - Display 15.6 4k', 'Laptop , gaming , asus , intell 11', 6, 2, 'lap1.png', 'lap2.png', 'lap3.png', 700, '2023-10-25 02:06:58', 'true'),
-(3, 'CANON EOS DSLR Camera', 'High Image Quality with 32.5 Megapixel CMOS (APS-C) Sensor DIGIC 8 Image Processor. High-Speed Continuous Shooting of up to 10 fps with no Time Lag during OVF Shooting. 4K (UHD) 30fps / FHD 120fps Video', 'Canon, camera , high quality, 4k', 6, 1, 'camera1.png', 'camera2.png', 'camera3.png', 380, '2023-08-29 18:13:22', 'true'),
-(4, 'Breed Dry Dog Food', 'Chicken, chicken by-product meal, corn, wheat, chicken fat, ground grain sorghum, natural flavors, dried plain beet pulp, egg product, potassium chloride, sodium hexametaphosphate, salt, cat food, dog food', 'food, dog food, cat food', 3, 9, 'food1.png', 'food2.png', 'food3.png', 100, '2023-10-25 01:41:31', 'true');
+(1, 'Scientific Calculator ', 'Handles algebra, trigonometry, logarithms, and exponential calculations.', 'Mathematical Functions Trigonometry (sin, cos, tan) Logarithms (log, ln)', 7, 2, 'CASIO WEW Worldwide Education Website.jfif', 'Casio FX-115 Advanced Scientific Calculator.jfif', 'Casio fx-570ES PLUS.jfif', 40, '2025-02-22 10:16:10', 'true'),
+(2, 'Pencils', ' writing, sketching, shading, and technical drawing.', 'Graphite Core Wooden Pencil , Mechanical Pencil ,H B Scale (HB, 2B, 4B, H, 2H, etc.)', 8, 4, 'Tombow 2558 Pencil w_ Eraser - HB _ Single.jfif', 'Tombow 2558 Pencil w_ Eraser - HB _ Single.jfif', 'Custom engraved pencils, back to school pencils, personalized pencils, pencils with name, Ticonderoga pencils, teacher class set.jfif', 3, '2025-02-22 10:35:09', 'true'),
+(3, 'Books ', 'A must-read book with an engaging story and premium quality print.', 'Fiction, Non-Fiction, Mystery, Romance, Thriller, Fantasy, Science Fiction, Biography, Self-Help, Historical Fiction', 2, 5, 'd38dd8c6-9c00-4efc-a334-2fd52050cad3.jfif', 'Download premium image of Huge bookshelf fullframe publication furniture bookcase_  about backgrounds, book, wooden, person, and furniture 12971452.jfif', 'Free Enchanting Book Stack Image _ Download at StockCake.jfif', 30, '2025-02-22 10:42:52', 'true'),
+(4, 'Art & Craft ', 'Based in Kingston, Ontario, Tri-Art produces a wide range of paints and art materials.', 'DIY Art Kits ,Painting Supplies , Drawing Tools', 6, 6, 'ac40de77-ea95-4ba4-9f48-852445f7285b.jfif', 'a7825119-114d-4a76-a8ba-a74ae18e69e9.jfif', 'Desk Collection.jfif', 25, '2025-02-22 10:49:23', 'true'),
+(5, 'Eraser', 'Premium Dust-Free Eraser – Smooth & Precise Erasing', 'soft eraser ', 3, 14, 'Untitled design.png', 'Untitled design (1).png', 'Untitled design.png', 5, '2025-03-16 15:46:52', 'true'),
+(6, 'sharpener', 'Smooth, break-free sharpening for perfect points every time!', 'High-Quality Pencil Sharpener', 3, 15, '7677518.jpg', '25608.jpg', '46575.jpg', 5, '2025-03-16 15:53:20', 'true'),
+(7, 'Notebooks ', ' Ideal for pen, pencil, and markers.', 'Premium Writing Notebook', 1, 16, 'Untitled design (3).png', 'Untitled design (4).png', 'Untitled design (3).png', 8, '2025-03-16 15:58:31', 'true'),
+(8, 'Highlighters', 'Bright & Smooth Highlighters', 'Smudge-Free Highlighters', 3, 17, 'Untitled design (6).png', 'Untitled design (6).png', 'Untitled design (6).png', 5, '2025-03-16 16:03:26', 'true'),
+(9, 'Acrylic Paints', 'long lasting paints ', 'easy to use ', 3, 5, 'Untitled design (7).png', 'Untitled design (7).png', 'Untitled design (7).png', 10, '2025-03-16 16:05:47', 'true'),
+(10, 'Clipboards', 'Durable & Lightweight Clipboards ', 'Heavy-Duty Clipboard', 3, 16, 'Untitled design (8).png', 'Untitled design (8).png', 'Untitled design (8).png', 12, '2025-03-16 16:08:35', 'true'),
+(11, 'Sticky Notes', 'Sticky Notes are small, rectangular or square ', 'small and accurate ', 3, 5, 'Untitled design (9).png', 'Untitled design (9).png', 'Untitled design (9).png', 3, '2025-03-16 16:25:11', 'true');
 
 -- --------------------------------------------------------
 
@@ -178,8 +196,13 @@ CREATE TABLE `user_orders` (
 
 INSERT INTO `user_orders` (`order_id`, `user_id`, `amount_due`, `invoice_number`, `total_products`, `order_date`, `order_status`) VALUES
 (1, 1, 1160, 312346784, 3, '2023-10-22 15:31:20', 'paid'),
-(2, 1, 760, 1918753782, 1, '2023-10-24 00:25:10', 'pending'),
-(3, 1, 240, 351837813, 1, '2023-10-24 18:41:02', 'pending');
+(4, 1, 3, 410162768, 1, '2025-03-19 10:39:11', 'paid'),
+(5, 1, 150, 1679698018, 1, '2025-02-24 12:16:29', 'pending'),
+(6, 1, 43, 397854606, 3, '2025-03-19 08:13:32', 'pending'),
+(7, 1, 30, 2054593820, 1, '2025-03-19 08:23:19', 'pending'),
+(8, 1, 8, 775783111, 2, '2025-03-19 10:05:02', 'pending'),
+(9, 1, 53, 1613463308, 3, '2025-03-19 10:26:56', 'pending'),
+(10, 1, 5, 641033000, 1, '2025-03-19 12:10:57', 'pending');
 
 -- --------------------------------------------------------
 
@@ -195,13 +218,6 @@ CREATE TABLE `user_payments` (
   `payment_method` varchar(255) NOT NULL,
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_payments`
---
-
-INSERT INTO `user_payments` (`payment_id`, `order_id`, `invoice_number`, `amount`, `payment_method`, `payment_date`) VALUES
-(1, 1, 312346784, 1160, 'paypal', '2023-10-24 00:23:26');
 
 -- --------------------------------------------------------
 
@@ -225,7 +241,8 @@ CREATE TABLE `user_table` (
 --
 
 INSERT INTO `user_table` (`user_id`, `username`, `user_email`, `user_password`, `user_image`, `user_ip`, `user_address`, `user_mobile`) VALUES
-(1, 'abdo', 'abdo@gmail.com', '$2y$10$5ynby9fq7wf2ZmHlkvehu.JGbK6r7zZLtLzuJz9Jt5FP03rGZ9Mj.', 'new logo after Edit1920.png', '::1', 'Cairo', '123456789');
+(1, 'mihar', 'mihar@gmail.com', '$2y$10$5ynby9fq7wf2ZmHlkvehu.JGbK6r7zZLtLzuJz9Jt5FP03rGZ9Mj.', 'new logo after Edit1920.png', '::1', 'Cairo', '123456789'),
+(4, 'kvg', 'kvg@gmail.com', '$2y$10$nyKGnKwwDljapPtw6lplXeJ.lgxfl3fz/uc/NOxpD51pEUhopPFjO', 'bgregister.png', '::1', 'kvg', 'kvg');
 
 --
 -- Indexes for dumped tables
@@ -293,37 +310,37 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `admin_table`
 --
 ALTER TABLE `admin_table`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orders_pending`
 --
 ALTER TABLE `orders_pending`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_payments`
@@ -335,6 +352,9 @@ ALTER TABLE `user_payments`
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
