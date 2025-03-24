@@ -5,7 +5,7 @@
         $delete_result = mysqli_query($con,$delete_query);
         if($delete_result){
             echo "<script>window.alert('Brand deleted successfully');</script>";
-            echo "<script>window.open('index.php?view_brands','_self');</script>";
+            echo "<script>window.open('../../View/admin_index.php?view_brands','_self');</script>";
         }
     }
 ?>

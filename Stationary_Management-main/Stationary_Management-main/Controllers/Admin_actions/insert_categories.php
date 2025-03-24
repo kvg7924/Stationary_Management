@@ -1,5 +1,5 @@
 <?php
-include('../includes/connect.php');
+include('../../Models/connect.php');
 
 if (isset($_POST['insert_categ_title'])) {
     $category_title = trim($_POST['categ_title']); // Trim whitespace from input

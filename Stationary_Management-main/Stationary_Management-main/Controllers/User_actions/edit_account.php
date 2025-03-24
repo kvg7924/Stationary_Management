@@ -22,7 +22,7 @@ if(isset($_POST['user_update'])){
     $update_mobile = $_POST['user_mobile'];
     $update_image = $_FILES['user_image']['name'] != ''? $_FILES['user_image']['name'] : $user_image;
     $update_image_tmp = $_FILES['user_image']['tmp_name'];
-    move_uploaded_file($update_image_tmp,"./user_images/$update_image");
+    move_uploaded_file($update_image_tmp,"../../View/images/user_images/$update_image");
     
     // update query 
     $update_query = "UPDATE `user_table` SET username='$update_user',user_email='$update_email',user_image='$update_image',user_address='$update_address',user_mobile='$update_mobile' WHERE user_id=$update_id";
@@ -30,7 +30,7 @@ if(isset($_POST['user_update'])){
     if($update_result){
         $_SESSION['username'] = $update_user;
         echo "<script>window.alert('Data updated successfully');</script>";
-        echo "<script>window.open('profile.php?edit_account','_self');</script>";
+        echo "<script>window.open('../../View/profile.php?edit_account','_self');</script>";
     }
 }
 ?>

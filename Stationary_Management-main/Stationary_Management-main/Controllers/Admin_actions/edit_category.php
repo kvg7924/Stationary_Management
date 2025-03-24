@@ -20,7 +20,7 @@
             $update_category_result = mysqli_query($con,$update_category_query);
             if($update_category_result){
                 echo "<script>window.alert('Category updated successfully');</script>";
-                echo "<script>window.open('./index.php?view_categories','_self');</script>";
+                echo "<script>window.open('../../View/admin_index.php?view_categories','_self');</script>";
             }
         }
     }

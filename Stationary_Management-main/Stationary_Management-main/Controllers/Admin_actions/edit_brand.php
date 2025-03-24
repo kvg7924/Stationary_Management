@@ -20,7 +20,7 @@
             $update_brand_result = mysqli_query($con,$update_brand_query);
             if($update_brand_result){
                 echo "<script>window.alert('Brand updated successfully');</script>";
-                echo "<script>window.open('./index.php?view_brands','_self');</script>";
+                echo "<script>window.open('../../View/admin_index.php?view_brands','_self');</script>";
             }
         }
     }

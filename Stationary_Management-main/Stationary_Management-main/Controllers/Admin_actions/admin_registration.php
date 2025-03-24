@@ -1,6 +1,6 @@
 <?php
-include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Admin Registration</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 <body>
 
@@ -22,7 +22,7 @@ session_start();
             <h4 class="text-center mb-3 fw-light">Create an account</h4>
             <div class="row m-0">
                 <div class="col-md-6 p-0 d-none d-md-block">
-                    <img src="../assets/images/bgregister.png" class="admin-register" alt="Register photo">
+                    <img src="../../View/images/bgregister.png" class="admin-register" alt="Register photo">
                 </div>
                 <div class="col-md-6 py-4 px-5 d-flex flex-column gap-4">
                     <div>
@@ -71,7 +71,7 @@ session_start();
     </div> -->
     <!-- End Footer -->
 
-    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
@@ -95,7 +95,7 @@ if (isset($_POST['admin_register'])) {
         echo "<script>window.alert('Passwords are not match');</script>";
     } else {
         // insert query
-        move_uploaded_file($image_tmp, "./admin_images/$image");
+        move_uploaded_file($image_tmp, "../../View/images/admin_images/$image");
         $insert_query = "INSERT INTO `admin_table` (admin_name,admin_email,admin_image,admin_password) VALUES ('$username','$email','$image','$hash_password')";
         $insert_result = mysqli_query($con, $insert_query);
         if ($insert_result) {

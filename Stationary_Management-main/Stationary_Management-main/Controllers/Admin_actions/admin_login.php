@@ -1,6 +1,6 @@
 <?php
-include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,12 +10,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory specialist Login</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 
 <body>
-<?php include("../execution_time.php"); ?>
+<?php include("../../Helpers/execution_time.php"); ?>
     <!-- Start Landing Section -->
     <div class="landing admin-register">
         <div class="">
@@ -23,7 +23,7 @@ session_start();
             <h4 class="text-center mb-3 fw-light">Login to your account</h4>
             <div class="row m-0 align-items-center">
                 <div class="col-md-6 p-0 d-none d-md-block">
-                    <img src="../assets/images/bgregister.png" class="admin-register" alt="Login photo">
+                    <img src="../../View/images/bgregister.png" class="admin-register" alt="Login photo">
                 </div>
                 <div class="col-md-6 py-4 px-5 d-flex flex-column gap-4">
                     <div>
@@ -51,7 +51,7 @@ session_start();
     </div>
   
 
-    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
@@ -68,7 +68,7 @@ if (isset($_POST['admin_login'])) {
         if (password_verify($password, $row_data['admin_password'])) {
             $_SESSION['admin_username'] = $username;
             echo "<script>alert('Login Successfully');</script>";
-            echo "<script>window.open('./index.php','_self');</script>";
+            echo "<script>window.open('../../View/admin_index.php','_self');</script>";
         } else {
             echo "<script>alert('Invalid Credentials')</script>";
         }

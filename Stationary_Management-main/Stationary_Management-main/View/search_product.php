@@ -1,6 +1,7 @@
 <?php
-include("./includes/connect.php");
-include("./functions/common_functions.php");
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,12 +11,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Products</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 
 <body>
-<?php include("execution_time.php"); ?>
+<?php include("../../Helpers/execution_time.php"); ?>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Free Express Delivery - OFF 50%!</span>
@@ -24,30 +25,30 @@ session_start();
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="./index.php">Stationery Shop</a>
+            <a class="navbar-brand fw-bold" href="../../View/index.php">Stationery Shop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link"  href="./index.php">Home</a>
+                        <a class="nav-link"  href="../../View/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./products.php">Products</a>
+                        <a class="nav-link active" aria-current="page" href="../../View/products.php">Products</a>
                     </li>
                  
                     <?php
                         if(isset($_SESSION['username'])){                            
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./users_area/profile.php'>My Account</a>
+                            <a class='nav-link' href='../../View/profile.php'>My Account</a>
                         </li>";
                         }
                         else{
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./users_area/user_registration.php'>Register</a>
+                            <a class='nav-link' href='./user_registration.php'>Register</a>
                         </li>";
                         }
                     ?>
@@ -98,13 +99,13 @@ session_start();
                     <?php
                     if(!isset($_SESSION['username'])){
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/user_login.php'>
+                        <a class='nav-link' href='./user_login.php'>
                             Login
                         </a>
                     </li>";
                 }else{
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/logout.php'>
+                        <a class='nav-link' href='./logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -133,7 +134,7 @@ session_start();
                         <ul class="navbar-nav me-auto ">
                             <li class="nav-item d-flex align-items-center gap-2">
                                 <span class="shape"></span>
-                                <a href="products.php" class="nav-link fw-bolder nav-title">
+                                <a href="../../View/products.php" class="nav-link fw-bolder nav-title">
                                     <h4>Brands</h4>
                                 </a>
                             </li>
@@ -146,7 +147,7 @@ session_start();
                         <ul class="navbar-nav me-auto ">
                             <li class="nav-item d-flex align-items-center gap-2">
                                 <span class="shape"></span>
-                                <a href="products.php" class="nav-link fw-bolder nav-title">
+                                <a href="../../View/products.php" class="nav-link fw-bolder nav-title">
                                     <h4>Categories</h4>
                                 </a>
                             </li>
@@ -172,7 +173,7 @@ session_start();
         </div>
     </div>
     <!-- End All Prodcuts  -->
-    <script src="./assets//js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

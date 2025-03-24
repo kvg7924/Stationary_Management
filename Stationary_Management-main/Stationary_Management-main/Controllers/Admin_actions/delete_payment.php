@@ -6,7 +6,7 @@
         $delete_result = mysqli_query($con,$delete_query);
         if($delete_result){
             echo "<script>window.alert('Payment deleted successfully');</script>";
-            echo "<script>window.open('index.php?list_payments','_self');</script>";
+            echo "<script>window.open('../../View/admin_index.php?list_payments','_self');</script>";
         }
 
     }

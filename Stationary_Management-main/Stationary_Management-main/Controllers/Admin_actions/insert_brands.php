@@ -1,5 +1,5 @@
 <?php
-include('../includes/connect.php');
+include('../../Models/connect.php');
 
 if (isset($_POST['insert_brand_title'])) {
     $brand_title = trim($_POST['brand_title']); // Trim whitespace from input

@@ -1,6 +1,6 @@
 <?php
-include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 
 // Include PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
@@ -114,7 +114,7 @@ if ($insert_order_result) {
         echo "<script>window.alert('Orders are submitted successfully, but email could not be sent. Error: " . $e->getMessage() . "');</script>";
     }
 
-    echo "<script>window.open('profile.php','_self');</script>";
+    echo "<script>window.open('../../View/profile.php','_self');</script>";
 } else {
     die("Error inserting order: " . mysqli_error($con));
 }
