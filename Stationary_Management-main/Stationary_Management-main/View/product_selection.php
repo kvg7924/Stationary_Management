@@ -1,6 +1,6 @@
 <?php
 // Include the backend logic file
-include("search_product.php");
+include("./search_product.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +9,8 @@ include("search_product.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Products</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -37,11 +37,11 @@ include("search_product.php");
                     </li>
                     <?php if (isset($_SESSION['username'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="./users_area/profile.php">My Account</a>
+                            <a class="nav-link" href="./profile.php">My Account</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="./users_area/user_registration.php">Register</a>
+                            <a class="nav-link" href="../../Controllers/User_actions/user_registration.php">Register</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -70,9 +70,9 @@ include("search_product.php");
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php if (!isset($_SESSION['username'])): ?>
-                                <li><a class="dropdown-item" href="./users_area/user_login.php">Login</a></li>
+                                <li><a class="dropdown-item" href="../../Controllers/User_actions/user_login.php">Login</a></li>
                             <?php else: ?>
-                                <li><a class="dropdown-item" href="./users_area/logout.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../../Controllers/User_actions/logout.php">Logout</a></li>
                             <?php endif; ?>
                         </ul>
                     </li>
@@ -98,7 +98,7 @@ include("search_product.php");
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item d-flex align-items-center gap-2">
                                 <span class="shape"></span>
-                                <a href="products.php" class="nav-link fw-bolder nav-title"><h4>Brands</h4></a>
+                                <a href="./products.php" class="nav-link fw-bolder nav-title"><h4>Brands</h4></a>
                             </li>
                             <?php getBrands(); ?>
                         </ul>
@@ -107,7 +107,7 @@ include("search_product.php");
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item d-flex align-items-center gap-2">
                                 <span class="shape"></span>
-                                <a href="products.php" class="nav-link fw-bolder nav-title"><h4>Categories</h4></a>
+                                <a href="./products.php" class="nav-link fw-bolder nav-title"><h4>Categories</h4></a>
                             </li>
                             <?php getCategories(); ?>
                         </ul>
@@ -129,7 +129,7 @@ include("search_product.php");
                                 $total_pages = ceil($total_items / $items_per_page);
 
                                 for ($i = 1; $i <= $total_pages; $i++) {
-                                    echo "<li class='page-item'><a class='page-link' href='products.php?page=$i'>$i</a></li>";
+                                    echo "<li class='page-item'><a class='page-link' href='./products.php?page=$i'>$i</a></li>";
                                 }
                                 ?>
                             </ul>
@@ -140,7 +140,7 @@ include("search_product.php");
         </div>
     </div>
 
-    <script src="./assets/js/bootstrap.bundle.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
     <script>
         document.getElementById('search-form').addEventListener('submit', function (e) {
             e.preventDefault();

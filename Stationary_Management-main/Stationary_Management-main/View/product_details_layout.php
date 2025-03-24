@@ -1,6 +1,6 @@
 <?php
-include("./includes/connect.php");
-include("./functions/common_functions.php");
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Products</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -37,9 +37,9 @@ session_start();
             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             <?php
             if (isset($_SESSION['username'])) {
-                echo "<li class='nav-item'><a class='nav-link' href='./users_area/profile.php'>My Account</a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='./profile.php'>My Account</a></li>";
             } else {
-                echo "<li class='nav-item'><a class='nav-link' href='./users_area/user_registration.php'>Register</a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a></li>";
             }
             ?>
         </ul>
@@ -62,10 +62,10 @@ session_start();
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
             <?php
             if (isset($_SESSION['username'])) {
-                echo "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>";
-                echo "<li><a class='dropdown-item' href='./users_area/logout.php'>Logout</a></li>";
+                echo "<li><a class='dropdown-item' href='./profile.php'>Profile</a></li>";
+                echo "<li><a class='dropdown-item' href='../../Controllers/User_actions/logout.php'>Logout</a></li>";
             } else {
-                echo "<li><a class='dropdown-item' href='./users_area/user_login.php'>Login</a></li>";
+                echo "<li><a class='dropdown-item' href='../../Controllers/User_actions/user_login.php'>Login</a></li>";
             }
             ?>
         </ul>

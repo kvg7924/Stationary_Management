@@ -1,6 +1,6 @@
 <?php
-include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 // session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ include('../functions/common_functions.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Payment Page</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 
 <body>
@@ -30,10 +30,10 @@ include('../functions/common_functions.php');
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="../../View/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./products.php">Products</a>
+                        <a class="nav-link" href="../../View/products.php">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -42,7 +42,7 @@ include('../functions/common_functions.php');
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./users_area/user_registration.php">Register</a>
+                        <a class="nav-link" href="./user_registration.php">Register</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -51,7 +51,7 @@ include('../functions/common_functions.php');
                 </form>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="./cart.php"><svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <a class="nav-link" href="../../View/cart.php"><svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11 27C11.5523 27 12 26.5523 12 26C12 25.4477 11.5523 25 11 25C10.4477 25 10 25.4477 10 26C10 26.5523 10.4477 27 11 27Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M25 27C25.5523 27 26 26.5523 26 26C26 25.4477 25.5523 25 25 25C24.4477 25 24 25.4477 24 26C24 26.5523 24.4477 27 25 27Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M3 5H7L10 22H26" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -91,13 +91,13 @@ include('../functions/common_functions.php');
                     <?php
                     if (!isset($_SESSION['username'])) {
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/user_login.php'>
+                        <a class='nav-link' href='./user_login.php'>
                             Login
                         </a>
                     </li>";
                     } else {
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/logout.php'>
+                        <a class='nav-link' href='./logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -146,7 +146,7 @@ include('../functions/common_functions.php');
                     </a>
                 </div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="order.php?user_id=<?php echo $user_id;?>" class="fs-1 fw-bold text-decoration-underline">
+                    <a href="./order.php?user_id=<?php echo $user_id;?>" class="fs-1 fw-bold text-decoration-underline">
                         Pay Cash
                     </a>
                 </div>
@@ -155,7 +155,7 @@ include('../functions/common_functions.php');
     </div>
     <!-- End Landing Section -->
 
-    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

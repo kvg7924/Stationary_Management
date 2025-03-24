@@ -1,6 +1,6 @@
 <?php
-include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 @session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ include('../functions/common_functions.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Shopper Login Page</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@ include('../functions/common_functions.php');
                         <div>
                             <input type="submit" value="Login" class="btn btn-primary mb-2" name="user_login">
                             <p>
-                                Don't have an account? <a href="user_registration.php" class="text-primary text-decoration-underline"><strong>Register</strong></a>
+                                Don't have an account? <a href="./user_registration.php" class="text-primary text-decoration-underline"><strong>Register</strong></a>
                             </p>
                         </div>
                     </form>
@@ -44,7 +44,7 @@ include('../functions/common_functions.php');
             </div>
         </div>
     </div>
-    <script src="./assets//js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
@@ -69,11 +69,11 @@ if (isset($_POST['user_login'])) {
             if ($row_count == 1 && $row_cart_count == 0) {
                 $_SESSION['username'] = $user_username;
                 echo "<script>alert('Login Successfully');</script>";
-                echo "<script>window.open('profile.php','_self');</script>";
+                echo "<script>window.open('../../View/profile.php','_self');</script>";
             } else if ($row_count == 1 && $row_cart_count > 0) {
                 $_SESSION['username'] = $user_username;
                 echo "<script>alert('Login Successfully');</script>";
-                echo "<script>window.open('payment.php','_self');</script>";
+                echo "<script>window.open('./payment.php','_self');</script>";
             }
         } else {
             echo "<script>alert('Invalid Credentials')</script>";

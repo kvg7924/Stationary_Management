@@ -1,6 +1,6 @@
 <?php
-include("./includes/connect.php");
-include("./functions/common_functions.php");
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stationery Products</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -41,13 +41,13 @@ session_start();
                         if(isset($_SESSION['username'])){                            
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./users_area/profile.php'>My Account</a>
+                            <a class='nav-link' href='./profile.php'>My Account</a>
                         </li>";
                         }
                         else{
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./users_area/user_registration.php'>Register</a>
+                            <a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a>
                         </li>";
                         }
                     ?>
@@ -95,13 +95,13 @@ session_start();
                     <?php
                     if(!isset($_SESSION['username'])){
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/user_login.php'>
+                        <a class='nav-link' href='../../Controllers/User_actions/user_login.php'>
                             Login
                         </a>
                     </li>";
                 }else{
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/logout.php'>
+                        <a class='nav-link' href='../../Controllers/User_actions/logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -161,8 +161,8 @@ session_start();
 
 
 
-    <script src="./assets//js/bootstrap.bundle.js"></script>
-    <script src="./assets//js/script.js"></script>
+    <script src=".//js/bootstrap.bundle.js"></script>
+    <script src=".//js/script.js"></script>
 </body>
 
 </html>

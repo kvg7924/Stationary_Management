@@ -6,9 +6,9 @@ include('../../Models/common_functions.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../PHPMailer/src/Exception.php';
-require '../PHPMailer/src/PHPMailer.php';
-require '../PHPMailer/src/SMTP.php';
+require '../../Helpers/PHPMailer/src/Exception.php';
+require '../../Helpers/PHPMailer/src/PHPMailer.php';
+require '../../Helpers/PHPMailer/src/SMTP.php';
 
 if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];

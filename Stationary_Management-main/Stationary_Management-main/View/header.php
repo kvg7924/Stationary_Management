@@ -1,6 +1,6 @@
 <?php
-include('./includes/connect.php');
-include('./functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Cart Details Page</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -26,15 +26,15 @@ session_start();
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <?php
                     $currentPage = basename($_SERVER['PHP_SELF']);
-                    $navLinks = ["Home" => "index.php", "Products" => "products.php", "About" => "#", "Contact" => "#"];
+                    $navLinks = ["Home" => "./index.php", "Products" => "./products.php", "About" => "#", "Contact" => "#"];
                     foreach ($navLinks as $name => $link) {
                         $activeClass = ($currentPage == $link) ? 'active' : '';
                         echo "<li class='nav-item'><a class='nav-link $activeClass' href='./$link'>$name</a></li>";
                     }
                     if (isset($_SESSION['username'])) {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/profile.php'>My Account</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='./profile.php'>My Account</a></li>";
                     } else {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/user_registration.php'>Register</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a></li>";
                     }
                     ?>
                 </ul>
@@ -75,9 +75,9 @@ session_start();
                     </li>
                     <?php
                     if (!isset($_SESSION['username'])) {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/user_login.php'>Login</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='../../Controllers/User_actions/user_login.php'>Login</a></li>";
                     } else {
-                        echo "<li class='nav-item'><a class='nav-link' href='./users_area/logout.php'>Logout</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='../../Controllers/User_actions/logout.php'>Logout</a></li>";
                     }
                     ?>
                 </ul>

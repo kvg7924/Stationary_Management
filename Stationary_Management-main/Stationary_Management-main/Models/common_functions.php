@@ -20,12 +20,12 @@ function getProduct($numToDisplay = '')
         <div class='col-md-4 mb-2'>
         <div class='one-card'>
             <div class='photo'>
-                <img src='./admin/product_images/$product_image_one' alt='$product_title'>
+                <img src='../../Helpers/images/product_images/$product_image_one' alt='$product_title'>
                 <button>
-                    <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
+                    <a class='text-light' href='../../View/products.php?add_to_cart=$product_id'>Add To Cart</a>
                 </button>
                 <button>
-                    <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
+                    <a class='text-light' href='../../View/product_details.php?product_id=$product_id'>View More</a>
                 </button>
             </div>
             <div class='content'>
@@ -87,12 +87,12 @@ function filterCategoryProduct()
         <div class='col-md-4 mb-2'>
         <div class='one-card'>
             <div class='photo'>
-                <img src='./admin/product_images/$product_image_one' alt='$product_title'>
+                <img src='../../Helpers/images/product_images/$product_image_one' alt='$product_title'>
                 <button>
-                <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
+                <a class='text-light' href='../../View/products.php?add_to_cart=$product_id'>Add To Cart</a>
             </button>
             <button>
-                <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
+                <a class='text-light' href='../../View/product_details.php?product_id=$product_id'>View More</a>
             </button>
             </div>
             <div class='content'>
@@ -152,12 +152,12 @@ function filterBrandProduct()
         <div class='col-md-4 mb-2'>
         <div class='one-card'>
             <div class='photo'>
-                <img src='./admin/product_images/$product_image_one' alt='$product_title'>
+                <img src='../../Helpers/images/product_images/$product_image_one' alt='$product_title'>
                 <button>
-                <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
+                <a class='text-light' href='../../View/products.php?add_to_cart=$product_id'>Add To Cart</a>
             </button>
             <button>
-                <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
+                <a class='text-light' href='../../View/product_details.php?product_id=$product_id'>View More</a>
             </button>
             </div>
             <div class='content'>
@@ -204,7 +204,7 @@ function getBrands()
         $brand_id = $brands_row_data['brand_id'];
         echo "
         <li class='nav-item'>
-            <a href='products.php?brand=$brand_id' class='nav-link'>
+            <a href='../../View/products.php?brand=$brand_id' class='nav-link'>
                 $brand_title
             </a>
         </li>
@@ -223,7 +223,7 @@ function getCategories()
         $category_id = $categories_row_data['category_id'];
         echo "
         <li class='nav-item'>
-        <a href='products.php?category=$category_id' class='nav-link'>
+        <a href='../../View/products.php?category=$category_id' class='nav-link'>
             $category_title
         </a>
     </li>
@@ -256,12 +256,12 @@ function search_product()
         <div class='col-md-4 mb-2'>
         <div class='one-card'>
             <div class='photo'>
-                <img src='./admin/product_images/$product_image_one' alt='$product_title'>
+                <img src='../../Helpers/images/product_images/$product_image_one' alt='$product_title'>
                 <button>
-                <a class='text-light' href='products.php?add_to_cart=$product_id'>Add To Cart</a>
+                <a class='text-light' href='../../View/products.php?add_to_cart=$product_id'>Add To Cart</a>
             </button>
             <button>
-                <a class='text-light' href='product_details.php?product_id=$product_id'>View More</a>
+                <a class='text-light' href='../../View/product_details.php?product_id=$product_id'>View More</a>
             </button>
             </div>
             <div class='content'>
@@ -321,14 +321,14 @@ function viewDetails()
                     <div class='row mx-0 justify-content-md-center gap-3 gap-md-0'>
                     <div class='col-md-2'>
                         <div class='prod-imgs'>
-                            <img src='./admin/product_images/$product_image_one' alt='$product_title'>
-                            <img src='./admin/product_images/$product_image_two' alt='$product_title'>
-                            <img src='./admin/product_images/$product_image_three' alt='$product_title'>
+                            <img src='../../Helpers/images/product_images/$product_image_one' alt='$product_title'>
+                            <img src='../../Helpers/images/product_images/$product_image_two' alt='$product_title'>
+                            <img src='../../Helpers/images/product_images/$product_image_three' alt='$product_title'>
                         </div>
                     </div>
                     <div class='col-md-5'>
                         <div class='main-img'>
-                            <img src='./admin/product_images/$product_image_one' alt='$product_title'>
+                            <img src='../../Helpers/images/product_images/$product_image_one' alt='$product_title'>
                         </div>
                     </div>
                     <div class='col-md-5'>
@@ -369,7 +369,7 @@ function viewDetails()
                             </p>
                             <div class='divider'>
                             </div>
-                            <form action='products.php?add_to_cart=$product_id'>
+                            <form action='../../View/products.php?add_to_cart=$product_id'>
                               
                                     <div>
                                         <input type='submit' class='btn btn-primary' value='Buy Now'>
@@ -456,13 +456,13 @@ function cart($num_of_items = 1)
         $num_of_rows = mysqli_num_rows($select_result);
         if ($num_of_rows > 0) {
             echo "<script>alert('This item is already present in Cart');</script>";
-            echo "<script>window.open('products.php','_self');</script>";
-            // header("Location:products.php");
+            echo "<script>window.open('../../View/products.php','_self');</script>";
+            // header("Location:../../View/products.php");
         } else {
             $insert_query = "INSERT INTO `card_details` (product_id,ip_address,quantity) VALUES ($getProductId,'$getIpAddress',1)";
             $insert_result = mysqli_query($con, $insert_query);
             echo "<script>alert('This item added to Cart');</script>";
-            echo "<script>window.open('products.php','_self');</script>";
+            echo "<script>window.open('../../View/products.php','_self');</script>";
         }
     }
 }
@@ -524,11 +524,11 @@ function get_user_order_details()
                     $row_orders_count = mysqli_num_rows($get_orders_result);
                     if($row_orders_count > 0){
                         echo "<h3 class='text-center mb-3'>You have <span class='text-2'>$row_orders_count</span> pending orders</h3>
-                            <a href='profile.php?my_orders' class='text-center text-decoration-underline fs-5'>Order details</a>
+                            <a href='../../View/profile.php?my_orders' class='text-center text-decoration-underline fs-5'>Order details</a>
                         ";
                     }else{
                         echo "<h3 class='text-center mb-3'>You have <span class='text-success'>0</span> pending orders</h3>
-                            <a href='../index.php' class='text-center text-decoration-underline fs-5'>Explore products</a>
+                            <a href='../../View/index.php' class='text-center text-decoration-underline fs-5'>Explore products</a>
                         ";
                     }
                 }

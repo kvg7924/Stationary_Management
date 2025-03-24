@@ -10,7 +10,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <?php
-                $navLinks = ["Home" => "index.php", "Products" => "products.php", "About" => "#", "Contact" => "#"];
+                $navLinks = ["Home" => "./index.php", "Products" => "./products.php", "About" => "#", "Contact" => "#"];
                 foreach ($navLinks as $name => $link) {
                     $activeClass = ($name == 'Products') ? 'active' : '';
                     echo "<li class='nav-item'><a class='nav-link $activeClass' href='./$link'>$name</a></li>";
@@ -38,9 +38,9 @@ session_start();
                     <ul class="dropdown-menu">
                         <?php
                         echo isset($_SESSION['username'])
-                            ? "<li><a class='dropdown-item' href='./users_area/profile.php'>Profile</a></li>
-                               <li><a class='dropdown-item' href='./users_area/logout.php'>Logout</a></li>"
-                            : "<li><a class='dropdown-item' href='./users_area/user_login.php'>Login</a></li>";
+                            ? "<li><a class='dropdown-item' href='./profile.php'>Profile</a></li>
+                               <li><a class='dropdown-item' href='../../Controllers/User_actions/logout.php'>Logout</a></li>"
+                            : "<li><a class='dropdown-item' href='../../Controllers/User_actions/user_login.php'>Login</a></li>";
                         ?>
                     </ul>
                 </li>

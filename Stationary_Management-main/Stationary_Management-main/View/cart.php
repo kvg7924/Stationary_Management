@@ -10,8 +10,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stationery Shop Cart Details Page</title>
-    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
-    <link rel="stylesheet" href="../../View/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -24,30 +24,30 @@ session_start();
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="../../View/index.php">Stationery Shop</a>
+            <a class="navbar-brand fw-bold" href="./index.php">Stationery Shop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active"  href="../../View/index.php">Home</a>
+                        <a class="nav-link active"  href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../../View/products.php">Products</a>
+                        <a class="nav-link" aria-current="page" href="./products.php">Products</a>
                     </li>
                   
                     <?php
                         if(isset($_SESSION['username'])){                            
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='../../View/profile.php'>My Account</a>
+                            <a class='nav-link' href='./profile.php'>My Account</a>
                         </li>";
                         }
                         else{
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./user_registration.php'>Register</a>
+                            <a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a>
                         </li>";
                         }
                     ?>
@@ -95,13 +95,13 @@ session_start();
                     <?php
                     if(!isset($_SESSION['username'])){
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./user_login.php'>
+                        <a class='nav-link' href='../../Controllers/User_actions/user_login.php'>
                             Login
                         </a>
                     </li>";
                 }else{
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./logout.php'>
+                        <a class='nav-link' href='../../Controllers/User_actions/logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -162,7 +162,7 @@ session_start();
                                         <td>
                                             <?php echo $product_title; ?>
                                         </td>
-                                        <td><img src="../../View/images/product_images/<?php echo $product_image_one; ?>" class="img-thumbnail" alt="<?php echo $product_title; ?>"></td>
+                                        <td><img src="../../Helpers/images/product_images/<?php echo $product_image_one; ?>" class="img-thumbnail" alt="<?php echo $product_title; ?>"></td>
                                         <td>
                                             <input type="number" class="form-control w-50 mx-auto" min="1" name="qty_<?php echo $product_id; ?>" value="<?php echo $product_quantity; ?>">
                                         </td>
@@ -188,11 +188,11 @@ session_start();
                         if ($result_count > 0) {
                             echo "<h4> Total Quantity: <strong class='text-2'>$total_quantity</strong></h4>
                         <h4>Sub Total: <strong class='text-2'> $total_price</strong></h4>
-                        <button class='btn btn-dark'><a class='text-light' href='../../View/index.php'>Continue Shopping</a></button>
-                        <button class='btn btn-dark'><a class='text-light' href='./checkout.php'>Checkout</a></button>
+                        <button class='btn btn-dark'><a class='text-light' href='./index.php'>Continue Shopping</a></button>
+                        <button class='btn btn-dark'><a class='text-light' href='../../Controllers/User_actions/checkout.php'>Checkout</a></button>
                         ";
                         }else{
-                            echo "<button class='btn btn-dark'><a class='text-light' href='../../View/index.php'>Continue Shopping</a></button>";
+                            echo "<button class='btn btn-dark'><a class='text-light' href='./index.php'>Continue Shopping</a></button>";
                         }
                         ?>
                     </div>
@@ -217,7 +217,7 @@ session_start();
                      $delete_result = mysqli_query($con, $delete_query);
 
                      if ($delete_result) {
-                         echo "<script>window.open('cart.php','_self');</script>";
+                         echo "<script>window.open('./cart.php','_self');</script>";
                      }
                      break; // Exit the loop after processing the first item
                  }
@@ -246,7 +246,7 @@ session_start();
                      $update_result = mysqli_query($con, $update_query);
 
                      if ($update_result) {
-                         echo "<script>window.open('cart.php','_self');</script>";
+                         echo "<script>window.open('./cart.php','_self');</script>";
                      }
                  }
              }
@@ -263,7 +263,7 @@ session_start();
 
     <!-- End Table Section -->
 
-    <script src="../../View/js/bootstrap.bundle.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
-include("../includes/connect.php");
-include("../functions/common_functions.php");
+include("../../Models/connect.php");
+include("../../Models/common_functions.php");
 session_start();
 if (isset($_GET['order_id'])) {
     $order_id = $_GET['order_id'];
@@ -20,7 +20,7 @@ if(isset($_POST['confirm_payment'])){
     $insert_payment_result = mysqli_query($con,$insert_payment_query);
     if($insert_payment_result){
         echo "<script>window.alert('Payment completed successfully');</script>";
-        echo "<script>window.open('profile.php?my_orders','_self');</script>";
+        echo "<script>window.open('../../View/profile.php?my_orders','_self');</script>";
     }
     //update user orders
     $update_orders_query = "UPDATE `user_orders` SET order_status = 'paid' WHERE order_id = $order_id";
@@ -34,8 +34,8 @@ if(isset($_POST['confirm_payment'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 
 <body>
@@ -73,7 +73,7 @@ if(isset($_POST['confirm_payment'])){
             </div>
         </div>
     </div>
-    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

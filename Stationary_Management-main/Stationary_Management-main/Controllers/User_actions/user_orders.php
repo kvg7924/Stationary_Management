@@ -57,7 +57,7 @@
                         <td>$order_date</td>
                         <td>$order_status</td>
                         <td>
-                            <a href='confirm_payment.php?order_id=$order_id' class='text-decoration-underline'>Confirm</a>
+                            <a href='./confirm_payment.php?order_id=$order_id' class='text-decoration-underline'>Confirm</a>
                         </td>
                     </tr>
                         ":"

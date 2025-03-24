@@ -1,6 +1,6 @@
 <?php
-    include('../includes/connect.php');
-    include('../functions/common_functions.php');
+    include('../../Models/connect.php');
+    include('../../Models/common_functions.php');
     session_start();
     if(isset($_SESSION['admin_username'])){
         $admin_name = $_SESSION['admin_username'];
@@ -10,7 +10,7 @@
         $admin_name = $row_fetch_admin_data['admin_name'];
         $admin_image = $row_fetch_admin_data['admin_image'];
     }else{
-        echo "<script>window.open('./admin_login.php','_self');</script>";
+        echo "<script>window.open('../../Controllers/Admin_actions/admin_login.php','_self');</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -20,8 +20,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory specialist Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -34,7 +34,7 @@
     <!-- Start NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="./index.php">Stationery Store</a>
+            <a class="navbar-brand fw-bold" href="./admin_index.php">Stationery Store</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContentad" aria-controls="navbarSupportedContentad" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,7 +45,7 @@
                     </li>
                     <li class="nav-item">
                     <button class="btn btn-primary p-0 px-1">
-                            <a href="./admin_logout.php" class="nav-link text-light">Logout</a>
+                            <a href="../../Controllers/Admin_actions/admin_logout.php" class="nav-link text-light">Logout</a>
                         </button>
                     </li>
                 </ul>
@@ -67,38 +67,38 @@
             <div class="row align-items-center">
                 <div class="col-md-2">
                     <div class="admin-image">
-                        <a href="./index.php"><img src="./admin_images/<?php echo $admin_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
+                        <a href="./admin_index.php"><img src="../../Helpers/images/admin_images/<?php echo $admin_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
                         <p><?php echo $admin_name;?></p>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <div class="buttons">
                         <button class="btn btn-outline-primary m-2">
-                            <a href="./insert_product.php" class="nav-link">Insert Products</a>
+                            <a href="../../Controllers/Admin_actions/insert_product.php" class="nav-link">Insert Products</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?view_products" class="nav-link">View Products</a>
+                            <a href="./admin_index.php?view_products" class="nav-link">View Products</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?insert_category" class="nav-link">Insert Categories</a>
+                            <a href="./admin_index.php?insert_category" class="nav-link">Insert Categories</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?view_categories" class="nav-link">View Categories</a>
+                            <a href="./admin_index.php?view_categories" class="nav-link">View Categories</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?insert_brand" class="nav-link">Insert Brands</a>
+                            <a href="./admin_index.php?insert_brand" class="nav-link">Insert Brands</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?view_brands" class="nav-link">View Brands</a>
+                            <a href="./admin_index.php?view_brands" class="nav-link">View Brands</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?list_orders" class="nav-link">All Orders</a>
+                            <a href="./admin_index.php?list_orders" class="nav-link">All Orders</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?list_payments" class="nav-link">All Payments</a>
+                            <a href="./admin_index.php?list_payments" class="nav-link">All Payments</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
-                            <a href="index.php?list_users" class="nav-link">List Users</a>
+                            <a href="./admin_index.php?list_users" class="nav-link">List Users</a>
                         </button>
                     </div>
                 </div>
@@ -116,52 +116,52 @@
         <div class="container">
             <?php
             if(isset($_GET['insert_category'])){
-                include('./insert_categories.php');
+                include('../../Controllers/Admin_actions/insert_categories.php');
             }
             if(isset($_GET['insert_brand'])){
-                include('./insert_brands.php');
+                include('../../Controllers/Admin_actions/insert_brands.php');
             }
             if(isset($_GET['view_products'])){
                 include('./view_products.php');
             }
             if(isset($_GET['edit_product'])){
-                include('./edit_product.php');
+                include('../../Controllers/Admin_actions/edit_product.php');
             }
             if(isset($_GET['delete_product'])){
-                include('./delete_product.php');
+                include('../../Controllers/Admin_actions/delete_product.php');
             }
             if(isset($_GET['view_categories'])){
                 include('./view_categories.php');
             }
             if(isset($_GET['edit_category'])){
-                include('./edit_category.php');
+                include('../../Controllers/Admin_actions/edit_category.php');
             }
             if(isset($_GET['delete_category'])){
-                include('./delete_category.php');
+                include('../../Controllers/Admin_actions/delete_category.php');
             }
             if(isset($_GET['view_brands'])){
                 include('./view_brands.php');
             }
             if(isset($_GET['edit_brand'])){
-                include('./edit_brand.php');
+                include('../../Controllers/Admin_actions/edit_brand.php');
             }
             if(isset($_GET['delete_brand'])){
-                include('./delete_brand.php');
+                include('../../Controllers/Admin_actions/delete_brand.php');
             }
             if(isset($_GET['list_orders'])){
-                include('./list_orders.php');
+                include('../../Controllers/Admin_actions/list_orders.php');
             }
             if(isset($_GET['delete_order'])){
-                include('./delete_order.php');
+                include('../../Controllers/Admin_actions/delete_order.php');
             }
             if(isset($_GET['list_payments'])){
-                include('./list_payments.php');
+                include('../../Controllers/Admin_actions/list_payments.php');
             }
             if(isset($_GET['delete_payment'])){
-                include('./delete_payment.php');
+                include('../../Controllers/Admin_actions/delete_payment.php');
             }
             if(isset($_GET['list_users'])){
-                include('./list_users.php');
+                include('../../Controllers/Admin_actions/list_users.php');
             }
 
             ?>
@@ -176,7 +176,7 @@
 
 
 
-    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

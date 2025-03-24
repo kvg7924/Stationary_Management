@@ -236,7 +236,7 @@ ul {
 */
 /* Start Landing Section  */
 .landing .container .row .cover {
-  background-image: url("../images/bg.png");
+  background-image: url("../../Helpers/images/bg.png");
   background-size: cover;
   height: 100%;
   display: flex;
@@ -351,7 +351,7 @@ ul {
 }
 
 .adver .container .cover {
-  background-image: url("../images/bgsecond.png");
+  background-image: url("../../Helpers/images/bgsecond.png");
   background-position: center;
   background-size: cover;
   height: 60vh;

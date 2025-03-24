@@ -1,6 +1,6 @@
 <?php
-include('./includes/connect.php');
-include('./functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 
 session_start();
 ?>
@@ -11,8 +11,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stationary Online Shop</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
@@ -47,17 +47,17 @@ session_start();
                     if (isset($_SESSION['username'])) {
                         echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./users_area/profile.php'>My Account</a>
+                            <a class='nav-link' href='./profile.php'>My Account</a>
                         </li>";
                     } else {
                         echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='./users_area/user_registration.php'>Register</a>
+                            <a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a>
                         </li>";
                     }
                     ?>
                 </ul>
-                <form action="search_product.php" class="d-flex">
+                <form action="./search_product.php" class="d-flex">
 
                     <button class="btn btn-outline-primary" type="submit">Search Product</button>
                 </form>
@@ -103,13 +103,13 @@ session_start();
                     <?php
                     if (!isset($_SESSION['username'])) {
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/user_login.php'>
+                        <a class='nav-link' href='../../Controllers/User_actions/user_login.php'>
                             Login
                         </a>
                     </li>";
                     } else {
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='./users_area/logout.php'>
+                        <a class='nav-link' href='../../Controllers/User_actions/logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -129,22 +129,22 @@ session_start();
                     <ul class="p-md-0 d-flex flex-column gap-3 pt-md-3">
                         <li><b>Our Products</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </li>
-                        <a href="http://localhost/Stationery/Stationery/products.php?category=7">
+                        <a href="https://stationerypro.online/products.php?category=7">
                             <li>Calculator</li>
                         </a>
-                        <a href="http://localhost/Stationery/Stationery/products.php?category=2">
+                        <a href="https://stationerypro.online/products.php?category=2">
                             <li>Books</li>
                         </a>
-                        <a href="http://localhost/Stationery/Stationery/products.php?category=1">
+                        <a href="https://stationerypro.online/products.php?category=1">
                             <li>Notebooks</li>
                         </a>
-                        <a href="http://localhost/Stationery/Stationery/products.php?category=8">
+                        <a href="https://stationerypro.online/products.php?category=8">
                             <li>Pencils</li>
                         </a>
-                        <a href="http://localhost/Stationery/Stationery/products.php?category=9">
+                        <a href="https://stationerypro.online/products.php?category=9">
                             <li>Pens</li>
                         </a>
-                        <a href="http://localhost/Stationery/Stationery/products.php?category=6">
+                        <a href="https://stationerypro.online/products.php?category=6">
                             <li>Art & Craft</li>
                         </a>
 
@@ -173,7 +173,7 @@ session_start();
             </div>
             <div class="cards">
 
-                <a href="http://localhost/Stationery/Stationery/products.php?category=7">
+                <a href="https://stationerypro.online/products.php?category=7">
                     <div class="card">
                         <span>
                             <svg
@@ -193,7 +193,7 @@ session_start();
                         <span>Calculators</span>
                     </div>
                 </a>
-                <a href="http://localhost/Stationery/Stationery/products.php?category=2">
+                <a href="https://stationerypro.online/products.php?category=2">
                     <div class="card">
 
                         <span>
@@ -215,7 +215,7 @@ session_start();
                     </div>
                 </a>
 
-                <a href="http://localhost/Stationery/Stationery/products.php?category=1">
+                <a href="https://stationerypro.online/products.php?category=1">
                     <div class="card">
                         <sp>
                             <svg
@@ -239,7 +239,7 @@ session_start();
                     </div>
                 </a>
 
-                <a href="http://localhost/Stationery/Stationery/products.php?category=8">
+                <a href="https://stationerypro.online/products.php?category=8">
                     <div class="card">
                         <span>
                             <svg
@@ -257,7 +257,7 @@ session_start();
                         <span>Pencils</span>
                     </div>
                 </a>
-                <a href="http://localhost/Stationery/Stationery/products.php?category=9">
+                <a href="https://stationerypro.online/products.php?category=9">
                     <div class="card">
                         <span>
                             <svg
@@ -278,7 +278,7 @@ session_start();
                         <span>Pens</span>
                     </div>
                 </a>
-                <a href="http://localhost/Stationery/Stationery/products.php?category=6">
+                <a href="https://stationerypro.online/products.php?category=6">
                     <div class="card">
                         <span>
                             <svg
@@ -331,9 +331,7 @@ session_start();
     </div>
     <!-- End Products  -->
 
-
-
-    <script src="./assets/js/bootstrap.bundle.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

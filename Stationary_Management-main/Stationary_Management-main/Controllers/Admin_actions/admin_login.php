@@ -23,7 +23,7 @@ session_start();
             <h4 class="text-center mb-3 fw-light">Login to your account</h4>
             <div class="row m-0 align-items-center">
                 <div class="col-md-6 p-0 d-none d-md-block">
-                    <img src="../../View/images/bgregister.png" class="admin-register" alt="Login photo">
+                    <img src="../../Helpers/images/bgregister.png" class="admin-register" alt="Login photo">
                 </div>
                 <div class="col-md-6 py-4 px-5 d-flex flex-column gap-4">
                     <div>
@@ -40,7 +40,7 @@ session_start();
                             <div class="form-outline">
                                 <input type="submit" value="Login" class="btn btn-primary mb-3" name="admin_login">
                                 <p class="small">
-                                    Don't have an account? <a href="./admin_resgistration.php" class="text-decoration-underline text-success fw-bold">Register</a>
+                                    Don't have an account? <a href="./admin_registration.php" class="text-decoration-underline text-success fw-bold">Register</a>
                                 </p>
                             </div>
                         </form>

@@ -1,6 +1,6 @@
 <?php
-include('../includes/connect.php');
-include('../functions/common_functions.php');
+include('../../Models/connect.php');
+include('../../Models/common_functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ include('../functions/common_functions.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce User Registration Page</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../../View/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../View/css/main.css" />
 </head>
 
 <body>
@@ -67,7 +67,7 @@ include('../functions/common_functions.php');
                         <div>
                             <input type="submit" value="Register" class="btn btn-primary mb-2" name="user_register">
                             <p>
-                                Already have an account? <a href="user_login.php" class="text-primary text-decoration-underline"><strong>Login</strong></a>
+                                Already have an account? <a href="./user_login.php" class="text-primary text-decoration-underline"><strong>Login</strong></a>
                             </p>
                         </div>
                     </form>
@@ -75,7 +75,7 @@ include('../functions/common_functions.php');
             </div>
         </div>
     </div>
-    <script src="./assets//js/bootstrap.bundle.js"></script>
+    <script src="../../View/js/bootstrap.bundle.js"></script>
     <script>
     // JavaScript function to validate form
     function validateForm() {
@@ -147,7 +147,7 @@ if (isset($_POST['user_register'])) {
         $hash_password = password_hash($user_password, PASSWORD_DEFAULT);
 
         // Move uploaded image to the server
-        move_uploaded_file($user_image_tmp, "./user_images/$user_image");
+        move_uploaded_file($user_image_tmp, "../../Helpers/images/user_images/$user_image");
 
         // Insert user into the database
         $insert_query = "INSERT INTO `user_table` (username, user_email, user_password, user_image, user_ip, user_address, user_mobile) 
@@ -157,7 +157,7 @@ if (isset($_POST['user_register'])) {
         if ($insert_result) {
             echo "<script>
                 window.alert('User added successfully');
-                window.location.href = 'user_login.php'; // Redirect to login page
+                window.location.href = './user_login.php'; // Redirect to login page
             </script>";
         } else {
             die(mysqli_error($con));
