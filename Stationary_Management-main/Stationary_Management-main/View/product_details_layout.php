@@ -1,6 +1,6 @@
 <?php
-include('../../Models/connect.php');
-include('../../Models/common_functions.php');
+include('../Models/connect.php');
+include('../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ session_start();
             if (isset($_SESSION['username'])) {
                 echo "<li class='nav-item'><a class='nav-link' href='./profile.php'>My Account</a></li>";
             } else {
-                echo "<li class='nav-item'><a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a></li>";
+                echo "<li class='nav-item'><a class='nav-link' href='../Controllers/User_actions/user_registration.php'>Register</a></li>";
             }
             ?>
         </ul>
@@ -63,9 +63,9 @@ session_start();
             <?php
             if (isset($_SESSION['username'])) {
                 echo "<li><a class='dropdown-item' href='./profile.php'>Profile</a></li>";
-                echo "<li><a class='dropdown-item' href='../../Controllers/User_actions/logout.php'>Logout</a></li>";
+                echo "<li><a class='dropdown-item' href='../Controllers/User_actions/logout.php'>Logout</a></li>";
             } else {
-                echo "<li><a class='dropdown-item' href='../../Controllers/User_actions/user_login.php'>Login</a></li>";
+                echo "<li><a class='dropdown-item' href='../Controllers/User_actions/user_login.php'>Login</a></li>";
             }
             ?>
         </ul>

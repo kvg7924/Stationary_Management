@@ -39,8 +39,8 @@ session_start();
                         <?php
                         echo isset($_SESSION['username'])
                             ? "<li><a class='dropdown-item' href='./profile.php'>Profile</a></li>
-                               <li><a class='dropdown-item' href='../../Controllers/User_actions/logout.php'>Logout</a></li>"
-                            : "<li><a class='dropdown-item' href='../../Controllers/User_actions/user_login.php'>Login</a></li>";
+                               <li><a class='dropdown-item' href='../Controllers/User_actions/logout.php'>Logout</a></li>"
+                            : "<li><a class='dropdown-item' href='../Controllers/User_actions/user_login.php'>Login</a></li>";
                         ?>
                     </ul>
                 </li>

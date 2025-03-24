@@ -41,7 +41,7 @@ include("./search_product.php");
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../Controllers/User_actions/user_registration.php">Register</a>
+                            <a class="nav-link" href="../Controllers/User_actions/user_registration.php">Register</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -70,9 +70,9 @@ include("./search_product.php");
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php if (!isset($_SESSION['username'])): ?>
-                                <li><a class="dropdown-item" href="../../Controllers/User_actions/user_login.php">Login</a></li>
+                                <li><a class="dropdown-item" href="../Controllers/User_actions/user_login.php">Login</a></li>
                             <?php else: ?>
-                                <li><a class="dropdown-item" href="../../Controllers/User_actions/logout.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../Controllers/User_actions/logout.php">Logout</a></li>
                             <?php endif; ?>
                         </ul>
                     </li>

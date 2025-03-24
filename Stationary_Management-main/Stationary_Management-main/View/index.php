@@ -1,6 +1,6 @@
 <?php
-include('../../Models/connect.php');
-include('../../Models/common_functions.php');
+include('../Models/connect.php');
+include('../Models/common_functions.php');
 
 session_start();
 ?>
@@ -18,7 +18,7 @@ session_start();
 <body>
 
 
-    <?php include("../../Helpers/execution_time.php"); ?>
+    <?php include("../Helpers/execution_time.php"); ?>
 
 
     <!-- upper-nav -->
@@ -52,7 +52,7 @@ session_start();
                     } else {
                         echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a>
+                            <a class='nav-link' href='../Controllers/User_actions/user_registration.php'>Register</a>
                         </li>";
                     }
                     ?>
@@ -103,13 +103,13 @@ session_start();
                     <?php
                     if (!isset($_SESSION['username'])) {
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='../../Controllers/User_actions/user_login.php'>
+                        <a class='nav-link' href='../Controllers/User_actions/user_login.php'>
                             Login
                         </a>
                     </li>";
                     } else {
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='../../Controllers/User_actions/logout.php'>
+                        <a class='nav-link' href='../Controllers/User_actions/logout.php'>
                             Logout
                         </a>
                     </li>";

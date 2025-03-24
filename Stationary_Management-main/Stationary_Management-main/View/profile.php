@@ -1,9 +1,9 @@
 <?php
-include('../../Models/connect.php');
-include('../../Models/common_functions.php');
+include('../Models/connect.php');
+include('../Models/common_functions.php');
 session_start();
 if(!isset($_SESSION['username'])){
-    header('location:../../Controllers/User_actions/user_login.php');
+    header('location:../Controllers/User_actions/user_login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ if(!isset($_SESSION['username'])){
 </head>
 
 <body>
-<?php include("../../Helpers/execution_time.php"); ?>
+<?php include("../Helpers/execution_time.php"); ?>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Free Express Delivery - OFF 50%!</span>
@@ -89,13 +89,13 @@ if(!isset($_SESSION['username'])){
                     <?php
                     if(!isset($_SESSION['username'])){
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='../../Controllers/User_actions/user_login.php'>
+                        <a class='nav-link' href='../Controllers/User_actions/user_login.php'>
                             Login
                         </a>
                     </li>";
                 }else{
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='../../Controllers/User_actions/logout.php'>
+                        <a class='nav-link' href='../Controllers/User_actions/logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -130,7 +130,7 @@ if(!isset($_SESSION['username'])){
                                 $row_user_img = mysqli_fetch_array($select_user_img_result);
                                 $userImg = $row_user_img['user_image'];
                                 echo "                            <li class='nav-item d-flex align-items-center gap-2'>
-                                <img src='../../Helpers/images/user_images/$userImg' alt='$username photo' class='img-profile img-thumbnail'/>
+                                <img src='../Helpers/images/user_images/$userImg' alt='$username photo' class='img-profile img-thumbnail'/>
                             </li>";
                             ?>
                             <li class="nav-item d-flex align-items-center gap-2">
@@ -158,7 +158,7 @@ if(!isset($_SESSION['username'])){
                             </li>
                             <li class="table-group-divider"></li>
                             <li class="nav-item d-flex align-items-center gap-2">
-                                <a href="../../Controllers/User_actions/logout.php" class="nav-link fw-bold">
+                                <a href="../Controllers/User_actions/logout.php" class="nav-link fw-bold">
                                     <h6>Logout</h6>
                                 </a>
                             </li>
@@ -171,13 +171,13 @@ if(!isset($_SESSION['username'])){
                             <?php
                                 get_user_order_details();
                                 if(isset($_GET['edit_account'])){
-                                    include('../../Controllers/User_actions/edit_account.php');
+                                    include('../Controllers/User_actions/edit_account.php');
                                 }
                                 if(isset($_GET['my_orders'])){
-                                    include('../../Controllers/User_actions/user_orders.php');
+                                    include('../Controllers/User_actions/user_orders.php');
                                 }
                                 if(isset($_GET['delete_account'])){
-                                    include('../../Controllers/User_actions/delete_account.php');
+                                    include('../Controllers/User_actions/delete_account.php');
                                 }
                             ?>
                         </div>

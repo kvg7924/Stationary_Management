@@ -1,6 +1,6 @@
 <?php
-    include('../../Models/connect.php');
-    include('../../Models/common_functions.php');
+    include('../Models/connect.php');
+    include('../Models/common_functions.php');
     session_start();
     if(isset($_SESSION['admin_username'])){
         $admin_name = $_SESSION['admin_username'];
@@ -10,7 +10,7 @@
         $admin_name = $row_fetch_admin_data['admin_name'];
         $admin_image = $row_fetch_admin_data['admin_image'];
     }else{
-        echo "<script>window.open('../../Controllers/Admin_actions/admin_login.php','_self');</script>";
+        echo "<script>window.open('../Controllers/Admin_actions/admin_login.php','_self');</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<?php include("../../Helpers/execution_time.php"); ?>
+<?php include("../Helpers/execution_time.php"); ?>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Inventory specialist Dashboard And Free Express Delivery</span>
@@ -45,7 +45,7 @@
                     </li>
                     <li class="nav-item">
                     <button class="btn btn-primary p-0 px-1">
-                            <a href="../../Controllers/Admin_actions/admin_logout.php" class="nav-link text-light">Logout</a>
+                            <a href="../Controllers/Admin_actions/admin_logout.php" class="nav-link text-light">Logout</a>
                         </button>
                     </li>
                 </ul>
@@ -67,14 +67,14 @@
             <div class="row align-items-center">
                 <div class="col-md-2">
                     <div class="admin-image">
-                        <a href="./admin_index.php"><img src="../../Helpers/images/admin_images/<?php echo $admin_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
+                        <a href="./admin_index.php"><img src="../Helpers/images/admin_images/<?php echo $admin_image;?>" class="img-thumbnail" alt="Admin Photo"></a>
                         <p><?php echo $admin_name;?></p>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <div class="buttons">
                         <button class="btn btn-outline-primary m-2">
-                            <a href="../../Controllers/Admin_actions/insert_product.php" class="nav-link">Insert Products</a>
+                            <a href="../Controllers/Admin_actions/insert_product.php" class="nav-link">Insert Products</a>
                         </button>
                         <button class="btn btn-outline-primary m-2">
                             <a href="./admin_index.php?view_products" class="nav-link">View Products</a>
@@ -116,52 +116,52 @@
         <div class="container">
             <?php
             if(isset($_GET['insert_category'])){
-                include('../../Controllers/Admin_actions/insert_categories.php');
+                include('../Controllers/Admin_actions/insert_categories.php');
             }
             if(isset($_GET['insert_brand'])){
-                include('../../Controllers/Admin_actions/insert_brands.php');
+                include('../Controllers/Admin_actions/insert_brands.php');
             }
             if(isset($_GET['view_products'])){
                 include('./view_products.php');
             }
             if(isset($_GET['edit_product'])){
-                include('../../Controllers/Admin_actions/edit_product.php');
+                include('../Controllers/Admin_actions/edit_product.php');
             }
             if(isset($_GET['delete_product'])){
-                include('../../Controllers/Admin_actions/delete_product.php');
+                include('../Controllers/Admin_actions/delete_product.php');
             }
             if(isset($_GET['view_categories'])){
                 include('./view_categories.php');
             }
             if(isset($_GET['edit_category'])){
-                include('../../Controllers/Admin_actions/edit_category.php');
+                include('../Controllers/Admin_actions/edit_category.php');
             }
             if(isset($_GET['delete_category'])){
-                include('../../Controllers/Admin_actions/delete_category.php');
+                include('../Controllers/Admin_actions/delete_category.php');
             }
             if(isset($_GET['view_brands'])){
                 include('./view_brands.php');
             }
             if(isset($_GET['edit_brand'])){
-                include('../../Controllers/Admin_actions/edit_brand.php');
+                include('../Controllers/Admin_actions/edit_brand.php');
             }
             if(isset($_GET['delete_brand'])){
-                include('../../Controllers/Admin_actions/delete_brand.php');
+                include('../Controllers/Admin_actions/delete_brand.php');
             }
             if(isset($_GET['list_orders'])){
-                include('../../Controllers/Admin_actions/list_orders.php');
+                include('../Controllers/Admin_actions/list_orders.php');
             }
             if(isset($_GET['delete_order'])){
-                include('../../Controllers/Admin_actions/delete_order.php');
+                include('../Controllers/Admin_actions/delete_order.php');
             }
             if(isset($_GET['list_payments'])){
-                include('../../Controllers/Admin_actions/list_payments.php');
+                include('../Controllers/Admin_actions/list_payments.php');
             }
             if(isset($_GET['delete_payment'])){
-                include('../../Controllers/Admin_actions/delete_payment.php');
+                include('../Controllers/Admin_actions/delete_payment.php');
             }
             if(isset($_GET['list_users'])){
-                include('../../Controllers/Admin_actions/list_users.php');
+                include('../Controllers/Admin_actions/list_users.php');
             }
 
             ?>

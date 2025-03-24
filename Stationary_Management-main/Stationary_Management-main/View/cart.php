@@ -1,6 +1,6 @@
 <?php
-include('../../Models/connect.php');
-include('../../Models/common_functions.php');
+include('../Models/connect.php');
+include('../Models/common_functions.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ session_start();
 </head>
 
 <body>
-<?php include("../../Helpers/execution_time.php"); ?>
+<?php include("../Helpers/execution_time.php"); ?>
     <!-- upper-nav -->
     <div class="upper-nav primary-bg p-2 px-3 text-center text-break">
         <span>Free Express Delivery - OFF 50%! </span>
@@ -47,7 +47,7 @@ session_start();
                         else{
                             echo "
                             <li class='nav-item'>
-                            <a class='nav-link' href='../../Controllers/User_actions/user_registration.php'>Register</a>
+                            <a class='nav-link' href='../Controllers/User_actions/user_registration.php'>Register</a>
                         </li>";
                         }
                     ?>
@@ -95,13 +95,13 @@ session_start();
                     <?php
                     if(!isset($_SESSION['username'])){
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='../../Controllers/User_actions/user_login.php'>
+                        <a class='nav-link' href='../Controllers/User_actions/user_login.php'>
                             Login
                         </a>
                     </li>";
                 }else{
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='../../Controllers/User_actions/logout.php'>
+                        <a class='nav-link' href='../Controllers/User_actions/logout.php'>
                             Logout
                         </a>
                     </li>";
@@ -162,7 +162,7 @@ session_start();
                                         <td>
                                             <?php echo $product_title; ?>
                                         </td>
-                                        <td><img src="../../Helpers/images/product_images/<?php echo $product_image_one; ?>" class="img-thumbnail" alt="<?php echo $product_title; ?>"></td>
+                                        <td><img src="../Helpers/images/product_images/<?php echo $product_image_one; ?>" class="img-thumbnail" alt="<?php echo $product_title; ?>"></td>
                                         <td>
                                             <input type="number" class="form-control w-50 mx-auto" min="1" name="qty_<?php echo $product_id; ?>" value="<?php echo $product_quantity; ?>">
                                         </td>
@@ -189,7 +189,7 @@ session_start();
                             echo "<h4> Total Quantity: <strong class='text-2'>$total_quantity</strong></h4>
                         <h4>Sub Total: <strong class='text-2'> $total_price</strong></h4>
                         <button class='btn btn-dark'><a class='text-light' href='./index.php'>Continue Shopping</a></button>
-                        <button class='btn btn-dark'><a class='text-light' href='../../Controllers/User_actions/checkout.php'>Checkout</a></button>
+                        <button class='btn btn-dark'><a class='text-light' href='../Controllers/User_actions/checkout.php'>Checkout</a></button>
                         ";
                         }else{
                             echo "<button class='btn btn-dark'><a class='text-light' href='./index.php'>Continue Shopping</a></button>";

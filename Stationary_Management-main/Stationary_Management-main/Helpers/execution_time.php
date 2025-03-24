@@ -1,6 +1,6 @@
 <?php
 if (!isset($con)) {
-    include("../../Models/connect.php");
+    include("../Models/connect.php");
 }
 
 $start_time = microtime(true);
