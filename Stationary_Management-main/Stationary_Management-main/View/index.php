@@ -129,22 +129,22 @@ session_start();
                     <ul class="p-md-0 d-flex flex-column gap-3 pt-md-3">
                         <li><b>Our Products</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </li>
-                        <a href="https://stationerypro.online/products.php?category=7">
+                        <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=7">
                             <li>Calculator</li>
                         </a>
-                        <a href="https://stationerypro.online/products.php?category=2">
+                        <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=2">
                             <li>Books</li>
                         </a>
-                        <a href="https://stationerypro.online/products.php?category=1">
+                        <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=1">
                             <li>Notebooks</li>
                         </a>
-                        <a href="https://stationerypro.online/products.php?category=8">
+                        <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=8">
                             <li>Pencils</li>
                         </a>
-                        <a href="https://stationerypro.online/products.php?category=9">
+                        <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=5">
                             <li>Pens</li>
                         </a>
-                        <a href="https://stationerypro.online/products.php?category=6">
+                        <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=6">
                             <li>Art & Craft</li>
                         </a>
 
@@ -173,7 +173,7 @@ session_start();
             </div>
             <div class="cards">
 
-                <a href="https://stationerypro.online/products.php?category=7">
+                <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=7">
                     <div class="card">
                         <span>
                             <svg
@@ -193,7 +193,7 @@ session_start();
                         <span>Calculators</span>
                     </div>
                 </a>
-                <a href="https://stationerypro.online/products.php?category=2">
+                <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=2">
                     <div class="card">
 
                         <span>
@@ -215,7 +215,7 @@ session_start();
                     </div>
                 </a>
 
-                <a href="https://stationerypro.online/products.php?category=1">
+                <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=1">
                     <div class="card">
                         <sp>
                             <svg
@@ -239,7 +239,7 @@ session_start();
                     </div>
                 </a>
 
-                <a href="https://stationerypro.online/products.php?category=8">
+                <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=8">
                     <div class="card">
                         <span>
                             <svg
@@ -257,7 +257,7 @@ session_start();
                         <span>Pencils</span>
                     </div>
                 </a>
-                <a href="https://stationerypro.online/products.php?category=9">
+                <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=5">
                     <div class="card">
                         <span>
                             <svg
@@ -278,7 +278,7 @@ session_start();
                         <span>Pens</span>
                     </div>
                 </a>
-                <a href="https://stationerypro.online/products.php?category=6">
+                <a href="http://localhost/Stationery_git/Stationary_Management-main/Stationary_Management-main/Stationary_Management-main/View/products.php?category=6">
                     <div class="card">
                         <span>
                             <svg
