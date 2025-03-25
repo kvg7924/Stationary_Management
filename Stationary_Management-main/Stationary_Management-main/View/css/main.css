@@ -236,7 +236,7 @@ ul {
 */
 /* Start Landing Section  */
 .landing .container .row .cover {
-  background-image: url("../../Helpers/images/bg.png");
+  background-image: url("../../Helpers/images/bg.jpg");
   background-size: cover;
   height: 100%;
   display: flex;
