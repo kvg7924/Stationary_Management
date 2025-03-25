@@ -21,9 +21,10 @@ function getProduct($numToDisplay = '')
         <div class='one-card'>
             <div class='photo'>
                 <img src='../Helpers/images/product_images/$product_image_one' alt='$product_title'>
-                <button>
-                    <a class='text-light' href='../View/products.php?add_to_cart=$product_id'>Add To Cart</a>
-                </button>
+                  <button>
+                    <a class='btn btn-primary' href='../View/products.php?add_to_cart=$product_id'>Buy Now</a>
+                			</button>
+
                 <button>
                     <a class='text-light' href='../View/product_details.php?product_id=$product_id'>View More</a>
                 </button>
@@ -371,9 +372,8 @@ function viewDetails()
                             </div>
                             <form action='../View/products.php?add_to_cart=$product_id'>
                               
-                                    <div>
-                                        <input type='submit' class='btn btn-primary' value='Buy Now'>
-                                    </div>
+                                    <a class="btn btn-primary text-light" href="../View/products.php?add_to_cart=<?php echo $product_id; ?>">Buy Now</a>
+
                                 
                             </form>
                             <div class='delivery d-flex flex-column my-4 gap-3'>
